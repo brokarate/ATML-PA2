@@ -1,0 +1,11 @@
+{
+  "name": "standard",
+  "adapter": "outputs/task3_grpo/standard",
+  "examples": 200,
+  "reward_model_score": 1.1125166702270508,
+  "sampled_kl": 6.166097347886534e-05,
+  "entropy": 0.827763763666153,
+  "mean_response_length": 261.115,
+  "terminated_rate": 0.785,
+  "truncated_rate": 0.215
+}

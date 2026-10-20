@@ -1,0 +1,7 @@
+dataset,policy,examples,exact_accuracy,designated_final_rate,mean_response_tokens,terminated_rate,truncated_rate,label_distribution
+GSM8K,rlaif,300,0.2966666666666667,0.4066666666666667,289.06,0.9566666666666667,0.043333333333333335,"{'wrong': 211, 'correct': 89}"
+GSM8K,rlvr,300,0.29,0.42,283.8933333333333,0.9566666666666667,0.043333333333333335,"{'correct': 87, 'wrong': 213}"
+GSM8K,sft,300,0.29333333333333333,0.4,284.11333333333334,0.9533333333333334,0.04666666666666667,"{'correct': 88, 'wrong': 212}"
+SVAMP,rlaif,100,0.57,0.63,171.15,1.0,0.0,"{'correct': 57, 'wrong': 43}"
+SVAMP,rlvr,100,0.45,0.57,168.11,0.99,0.01,"{'wrong': 55, 'correct': 45}"
+SVAMP,sft,100,0.56,0.67,162.46,0.99,0.01,"{'correct': 56, 'wrong': 44}"

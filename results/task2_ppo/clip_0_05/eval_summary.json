@@ -1,0 +1,10 @@
+{
+  "name": "clip_0_05",
+  "adapter": "outputs/task2_ppo/clip_0_05",
+  "examples": 200,
+  "reward_model_score": 1.2604064178466796,
+  "sampled_kl": 4.759166568561568e-05,
+  "entropy": 0.782900604403112,
+  "mean_response_length": 299.305,
+  "terminated_rate": 0.885
+}

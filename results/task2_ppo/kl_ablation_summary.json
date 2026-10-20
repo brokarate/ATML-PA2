@@ -1,0 +1,75 @@
+{
+  "kl_values": [
+    0.0,
+    0.1,
+    0.2
+  ],
+  "runs": [
+    {
+      "train": {
+        "run": "kl_0_00",
+        "updates": 8,
+        "output_dir": "outputs/task2_ppo/kl_0_00",
+        "value_output_dir": "outputs/task2_ppo/kl_0_00/value_model",
+        "clip_epsilon": 0.2,
+        "kl_beta": 0.0,
+        "wall_time_seconds": 135.03272925000056,
+        "peak_vram_bytes": 0
+      },
+      "eval": {
+        "name": "kl_0_00",
+        "adapter": "outputs/task2_ppo/kl_0_00",
+        "examples": 200,
+        "reward_model_score": 1.2920484924316407,
+        "sampled_kl": -5.328691983947919e-06,
+        "entropy": 0.7751673916936852,
+        "mean_response_length": 289.875,
+        "terminated_rate": 0.92
+      }
+    },
+    {
+      "train": {
+        "run": "kl_0_10",
+        "updates": 8,
+        "output_dir": "outputs/task2_ppo/kl_0_10",
+        "value_output_dir": "outputs/task2_ppo/kl_0_10/value_model",
+        "clip_epsilon": 0.2,
+        "kl_beta": 0.1,
+        "wall_time_seconds": 263.0436160419922,
+        "peak_vram_bytes": 0
+      },
+      "eval": {
+        "name": "kl_0_10",
+        "adapter": "outputs/task2_ppo/kl_0_10",
+        "examples": 200,
+        "reward_model_score": 1.2846881103515626,
+        "sampled_kl": 3.844513569937647e-05,
+        "entropy": 0.7859565964690409,
+        "mean_response_length": 282.07,
+        "terminated_rate": 0.925
+      }
+    },
+    {
+      "train": {
+        "run": "kl_0_20",
+        "updates": 8,
+        "output_dir": "outputs/task2_ppo/kl_0_20",
+        "value_output_dir": "outputs/task2_ppo/kl_0_20/value_model",
+        "clip_epsilon": 0.2,
+        "kl_beta": 0.2,
+        "wall_time_seconds": 423.0441307500005,
+        "peak_vram_bytes": 0
+      },
+      "eval": {
+        "name": "kl_0_20",
+        "adapter": "outputs/task2_ppo/kl_0_20",
+        "examples": 200,
+        "reward_model_score": 1.3472281360626222,
+        "sampled_kl": -3.578122577224008e-05,
+        "entropy": 0.7786521133664064,
+        "mean_response_length": 308.06,
+        "terminated_rate": 0.91
+      }
+    }
+  ]
+}

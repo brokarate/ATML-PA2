@@ -1,0 +1,11 @@
+{
+  "run": "beta_0_30",
+  "beta": 0.3,
+  "train_file": "data/dpo_standard_train.jsonl",
+  "train_examples": 581,
+  "output_dir": "outputs/task1_dpo/beta_0_30",
+  "optimizer_steps": 38,
+  "wall_time_seconds": 3486.441195749998,
+  "original_train_examples": 600,
+  "skipped_overlong_prompts": 19
+}

@@ -1,0 +1,7 @@
+dataset,comparison,left_win_rate_ties_half,right_win_rate_ties_half,ties,examples
+GSM8K,rlvr_vs_rlaif,0.5133333333333333,0.4866666666666667,102,300
+GSM8K,sft_vs_rlaif,0.49333333333333335,0.5066666666666667,98,300
+GSM8K,sft_vs_rlvr,0.48833333333333334,0.5116666666666667,97,300
+SVAMP,rlvr_vs_rlaif,0.5,0.5,26,100
+SVAMP,sft_vs_rlaif,0.54,0.46,20,100
+SVAMP,sft_vs_rlvr,0.47,0.53,26,100

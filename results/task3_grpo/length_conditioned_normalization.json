@@ -1,0 +1,53 @@
+{
+  "source": "cached/grpo_k_cache.jsonl",
+  "group_size": 4,
+  "cache_completions": 192,
+  "eligible_completions": 122,
+  "masked_completions": 70,
+  "loss_cap": 512,
+  "bin_rule": "median valid completion token length; short <= median, long > median",
+  "method": "Autograd derivative of the clipped policy surrogate with respect to each response-token log probability at new=old, beta=0. Same fixed rewards, groups and masks for both normalizations.",
+  "scope": "Post-hoc fixed-cache mechanism diagnostic; not parameter-gradient norms measured during training. Each source K=8 cache group is partitioned into two K=4 groups to match the forks. Long/nonterminated responses masked to match the 512-token training loss rule.",
+  "rows": [
+    {
+      "normalization": "grpo",
+      "length_bin": "short",
+      "examples": 62,
+      "cutoff_tokens": 206.0,
+      "mean_tokens": 58.516129032258064,
+      "mean_abs_advantage": 0.7513969638949637,
+      "mean_abs_logprob_gradient_per_token": 0.00014833749670269266,
+      "mean_sum_abs_logprob_gradient_per_completion": 0.003913525853619602
+    },
+    {
+      "normalization": "grpo",
+      "length_bin": "long",
+      "examples": 60,
+      "cutoff_tokens": 206.0,
+      "mean_tokens": 371.2,
+      "mean_abs_advantage": 0.8078216969143048,
+      "mean_abs_logprob_gradient_per_token": 1.179717139575816e-05,
+      "mean_sum_abs_logprob_gradient_per_completion": 0.004207404671428671
+    },
+    {
+      "normalization": "dr_grpo",
+      "length_bin": "short",
+      "examples": 62,
+      "cutoff_tokens": 206.0,
+      "mean_tokens": 58.516129032258064,
+      "mean_abs_advantage": 0.7513969638949637,
+      "mean_abs_logprob_gradient_per_token": 7.643605182850786e-06,
+      "mean_sum_abs_logprob_gradient_per_completion": 0.0005263532348355289
+    },
+    {
+      "normalization": "dr_grpo",
+      "length_bin": "long",
+      "examples": 60,
+      "cutoff_tokens": 206.0,
+      "mean_tokens": 371.2,
+      "mean_abs_advantage": 0.8078216969143048,
+      "mean_abs_logprob_gradient_per_token": 8.217587248884123e-06,
+      "mean_sum_abs_logprob_gradient_per_completion": 0.0030642963747534472
+    }
+  ]
+}

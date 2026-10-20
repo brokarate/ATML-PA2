@@ -1,0 +1,54 @@
+{
+  "cached": [
+    {
+      "clip_epsilon": 0.05,
+      "cached_surrogate_loss": 0.002322667744010687,
+      "cached_clip_fraction": 0.137281596660614,
+      "cached_affected_token_fraction": 0.13728159745858862
+    },
+    {
+      "clip_epsilon": 0.2,
+      "cached_surrogate_loss": 0.00038320396561175585,
+      "cached_clip_fraction": 0.0018152937991544604,
+      "cached_affected_token_fraction": 0.0018152938506920807
+    },
+    {
+      "clip_epsilon": 0.5,
+      "cached_surrogate_loss": 0.0003610545536503196,
+      "cached_clip_fraction": 0.0,
+      "cached_affected_token_fraction": 0.0
+    }
+  ],
+  "forks": [
+    {
+      "name": "clip_0_05",
+      "adapter": "outputs/task2_ppo/clip_0_05",
+      "examples": 200,
+      "reward_model_score": 1.2604064178466796,
+      "sampled_kl": 4.759166568561568e-05,
+      "entropy": 0.782900604403112,
+      "mean_response_length": 299.305,
+      "terminated_rate": 0.885
+    },
+    {
+      "name": "clip_0_20",
+      "adapter": "outputs/task2_ppo/clip_0_20",
+      "examples": 200,
+      "reward_model_score": 1.2846881103515626,
+      "sampled_kl": 3.844513569937647e-05,
+      "entropy": 0.7859565964690409,
+      "mean_response_length": 282.07,
+      "terminated_rate": 0.925
+    },
+    {
+      "name": "clip_0_50",
+      "adapter": "outputs/task2_ppo/clip_0_50",
+      "examples": 200,
+      "reward_model_score": 1.2846881103515626,
+      "sampled_kl": 3.844513569937647e-05,
+      "entropy": 0.7859565964690409,
+      "mean_response_length": 282.07,
+      "terminated_rate": 0.925
+    }
+  ]
+}

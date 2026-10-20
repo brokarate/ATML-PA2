@@ -1,0 +1,52 @@
+{
+  "provenance": "Frozen post-hoc evaluation of existing checkpoints; no training.",
+  "skipped_overlong_prompts": 9,
+  "runs": {
+    "standard": {
+      "strata": {
+        "length_matched": {
+          "examples": 80,
+          "preference_accuracy": 0.5625
+        },
+        "preferred_longer": {
+          "examples": 78,
+          "preference_accuracy": 0.4358974358974359
+        },
+        "rejected_longer": {
+          "examples": 79,
+          "preference_accuracy": 0.6835443037974683
+        }
+      },
+      "aggregate_preference_accuracy": 0.5611814345991561,
+      "saved_generation_mean_tokens": 142.77637130801688,
+      "saved_generation_sample_sd_tokens": 98.21131548944159,
+      "word_limit_examples": 10,
+      "word_limit_compliance": 0.7,
+      "word_count_definition": "common.metrics.word_count: Unicode word-boundary regex",
+      "stratum_source": "data/dpo_length_stratified_eval.jsonl"
+    },
+    "length_balanced": {
+      "strata": {
+        "length_matched": {
+          "examples": 80,
+          "preference_accuracy": 0.5625
+        },
+        "preferred_longer": {
+          "examples": 78,
+          "preference_accuracy": 0.44871794871794873
+        },
+        "rejected_longer": {
+          "examples": 79,
+          "preference_accuracy": 0.7721518987341772
+        }
+      },
+      "aggregate_preference_accuracy": 0.5949367088607594,
+      "saved_generation_mean_tokens": 140.23206751054852,
+      "saved_generation_sample_sd_tokens": 95.42861020303899,
+      "word_limit_examples": 10,
+      "word_limit_compliance": 0.6,
+      "word_count_definition": "common.metrics.word_count: Unicode word-boundary regex",
+      "stratum_source": "data/dpo_length_stratified_eval.jsonl"
+    }
+  }
+}

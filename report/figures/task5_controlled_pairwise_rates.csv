@@ -1,0 +1,6 @@
+comparison,intended_better_variant,ai_better_rate,ai_tie_rate,ai_wrong_rate,exact_better_rate,exact_tie_rate,exact_wrong_rate,comparisons
+distractor_robustness,clean_correct,0.0,1.0,0.0,1.0,0.0,0.0,20
+filler_susceptibility,clean_correct,0.1,0.35,0.55,0.0,1.0,0.0,20
+final_vs_reasoning,corrupt_reasoning_correct_final,0.2,0.8,0.0,1.0,0.0,0.0,20
+outcome_sensitivity,clean_correct,0.15,0.85,0.0,1.0,0.0,0.0,20
+reasoning_sensitivity,clean_correct,0.1,0.6,0.3,0.0,1.0,0.0,20

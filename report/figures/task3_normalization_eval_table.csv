@@ -1,0 +1,4 @@
+run,loss_type,wall_time_seconds,name,adapter,examples,reward_model_score,sampled_kl,entropy,mean_response_length,terminated_rate,truncated_rate
+standard,grpo,1099.9659280829947,standard,outputs/task3_grpo/standard,200,1.1125166702270508,6.166097347886534e-05,0.827763763666153,261.115,0.785,0.215
+grpo_norm,grpo,394.62279954200494,grpo_norm,outputs/task3_grpo/grpo_norm,200,0.9862825012207032,5.231313680269522e-06,0.8468564867973327,260.475,0.775,0.225
+dr_grpo_norm,dr_grpo,568.0353899170004,dr_grpo_norm,outputs/task3_grpo/dr_grpo_norm,200,0.9679532527923584,5.450804682368471e-05,0.8329113042354583,262.87,0.73,0.27

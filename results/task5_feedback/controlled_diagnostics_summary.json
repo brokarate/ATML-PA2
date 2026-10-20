@@ -1,0 +1,150 @@
+{
+  "diagnostic_problems": 20,
+  "variants_per_problem": [
+    "clean_correct",
+    "corrupt_reasoning_correct_final",
+    "gold_distractor_wrong_final",
+    "good_reasoning_wrong_final",
+    "persuasive_filler_correct"
+  ],
+  "exact_verifier": {
+    "examples": 100,
+    "overall_matches_expected_rate": 1.0,
+    "by_variant": {
+      "clean_correct": {
+        "examples": 20,
+        "exact_reward_rate": 1.0,
+        "matches_expected_rate": 1.0
+      },
+      "corrupt_reasoning_correct_final": {
+        "examples": 20,
+        "exact_reward_rate": 1.0,
+        "matches_expected_rate": 1.0
+      },
+      "gold_distractor_wrong_final": {
+        "examples": 20,
+        "exact_reward_rate": 0.0,
+        "matches_expected_rate": 1.0
+      },
+      "good_reasoning_wrong_final": {
+        "examples": 20,
+        "exact_reward_rate": 0.0,
+        "matches_expected_rate": 1.0
+      },
+      "persuasive_filler_correct": {
+        "examples": 20,
+        "exact_reward_rate": 1.0,
+        "matches_expected_rate": 1.0
+      }
+    }
+  },
+  "pairwise_ai_judge": {
+    "distractor_robustness": {
+      "comparisons": 20,
+      "preferred_variant_counts": {
+        "tie": 20
+      },
+      "judge_exact_agreement_rate": 0.0
+    },
+    "filler_susceptibility": {
+      "comparisons": 20,
+      "preferred_variant_counts": {
+        "persuasive_filler_correct": 11,
+        "tie": 7,
+        "clean_correct": 2
+      },
+      "judge_exact_agreement_rate": 0.35
+    },
+    "final_vs_reasoning": {
+      "comparisons": 20,
+      "preferred_variant_counts": {
+        "tie": 16,
+        "corrupt_reasoning_correct_final": 4
+      },
+      "judge_exact_agreement_rate": 0.2
+    },
+    "outcome_sensitivity": {
+      "comparisons": 20,
+      "preferred_variant_counts": {
+        "tie": 17,
+        "clean_correct": 3
+      },
+      "judge_exact_agreement_rate": 0.15
+    },
+    "reasoning_sensitivity": {
+      "comparisons": 20,
+      "preferred_variant_counts": {
+        "clean_correct": 2,
+        "tie": 12,
+        "corrupt_reasoning_correct_final": 6
+      },
+      "judge_exact_agreement_rate": 0.6
+    }
+  },
+  "exact_scores_file": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task5_feedback/controlled_exact_scores.jsonl",
+  "pairwise_file": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task5_feedback/controlled_pairwise.jsonl",
+  "controlled_preference_rates": [
+    {
+      "comparison": "distractor_robustness",
+      "examples": 20,
+      "exact_better_rate": 1.0,
+      "exact_tie_rate": 0.0,
+      "exact_wrong_rate": 0.0,
+      "ai_better_rate": 0.0,
+      "ai_tie_rate": 1.0,
+      "ai_wrong_rate": 0.0
+    },
+    {
+      "comparison": "filler_susceptibility",
+      "examples": 20,
+      "exact_better_rate": 0.0,
+      "exact_tie_rate": 1.0,
+      "exact_wrong_rate": 0.0,
+      "ai_better_rate": 0.1,
+      "ai_tie_rate": 0.35,
+      "ai_wrong_rate": 0.55
+    },
+    {
+      "comparison": "final_vs_reasoning",
+      "examples": 20,
+      "exact_better_rate": 1.0,
+      "exact_tie_rate": 0.0,
+      "exact_wrong_rate": 0.0,
+      "ai_better_rate": 0.2,
+      "ai_tie_rate": 0.8,
+      "ai_wrong_rate": 0.0
+    },
+    {
+      "comparison": "outcome_sensitivity",
+      "examples": 20,
+      "exact_better_rate": 1.0,
+      "exact_tie_rate": 0.0,
+      "exact_wrong_rate": 0.0,
+      "ai_better_rate": 0.15,
+      "ai_tie_rate": 0.85,
+      "ai_wrong_rate": 0.0
+    },
+    {
+      "comparison": "reasoning_sensitivity",
+      "examples": 20,
+      "exact_better_rate": 0.0,
+      "exact_tie_rate": 1.0,
+      "exact_wrong_rate": 0.0,
+      "ai_better_rate": 0.1,
+      "ai_tie_rate": 0.6,
+      "ai_wrong_rate": 0.3
+    }
+  ],
+  "strict_sensitivity": [
+    {
+      "feedback": "exact_verifier",
+      "S_reason": 0.0,
+      "S_outcome": 1.0
+    },
+    {
+      "feedback": "ai_judge",
+      "S_reason": 0.1,
+      "S_outcome": 0.15
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "kl_0_00",
+  "adapter": "outputs/task2_ppo/kl_0_00",
+  "examples": 200,
+  "reward_model_score": 1.2920484924316407,
+  "sampled_kl": -5.328691983947919e-06,
+  "entropy": 0.7751673916936852,
+  "mean_response_length": 289.875,
+  "terminated_rate": 0.92
+}

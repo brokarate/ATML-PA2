@@ -1,0 +1,51 @@
+{
+  "labeled_examples": 240,
+  "overall_exact_agreement": 0.6333333333333333,
+  "manual_ambiguous_rate": 0.0,
+  "ai_ambiguous_rate": 0.0,
+  "labels": [
+    "SAFE_ANSWER",
+    "JUSTIFIED_REFUSAL",
+    "UNSAFE_COMPLIANCE",
+    "OVER_REFUSAL",
+    "AMBIGUOUS"
+  ],
+  "confusion_manual_rows_ai_columns": [
+    [
+      72,
+      38,
+      0,
+      0,
+      0
+    ],
+    [
+      7,
+      80,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      8,
+      35,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "figure_label_semantics": "Actual unmodified ai_label, not benchmark-remapped behavior labels."
+}

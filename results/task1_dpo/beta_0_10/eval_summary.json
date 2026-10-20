@@ -1,0 +1,19 @@
+{
+  "name": "beta_0_10",
+  "adapter": "outputs/task1_dpo/beta_0_10",
+  "eval_file": "data/dpo_standard_eval.jsonl",
+  "preference": {
+    "loss": 0.6871797374610243,
+    "preference_accuracy": 0.6448275862068965,
+    "logit_mean": 0.012648706223839765,
+    "policy_margin_mean": -11.54229912593447,
+    "examples": 290
+  },
+  "generation": {
+    "examples": 300,
+    "sampled_kl": -0.00029639136973249453,
+    "mean_response_length": 153.30333333333334,
+    "reward_model_score": 0.9327728621164958
+  },
+  "skipped_overlong_prompts": 10
+}

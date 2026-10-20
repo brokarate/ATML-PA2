@@ -1,0 +1,19 @@
+{
+  "name": "standard_length_stratified",
+  "adapter": "outputs/task1_dpo/standard",
+  "eval_file": "data/dpo_length_stratified_eval.jsonl",
+  "skipped_overlong_prompts": 9,
+  "preference": {
+    "loss": 0.6815220396729964,
+    "preference_accuracy": 0.5611814345991561,
+    "logit_mean": 0.02957171382468964,
+    "policy_margin_mean": 12.551511474802524,
+    "examples": 237
+  },
+  "generation": {
+    "examples": 237,
+    "sampled_kl": 0.0009318860526846725,
+    "mean_response_length": 142.77637130801688,
+    "reward_model_score": 1.411111998658643
+  }
+}

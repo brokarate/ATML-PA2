@@ -1,0 +1,1397 @@
+\documentclass{article}
+
+% ============================================================
+% CITATION STYLE
+% ============================================================
+
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+
+
+% ============================================================
+% NEURIPS FORMAT
+% ============================================================
+
+\IfFileExists{neurips_2026.sty}{
+  \usepackage[preprint]{neurips_2026}
+}{
+  % Local fallback only. Overleaf should use neurips_2026.sty.
+  \usepackage[margin=0.7in]{geometry}
+}
+
+
+% ============================================================
+% PACKAGES
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{hyperref}
+\usepackage{url}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{caption}
+
+\usepackage{microtype}
+
+\usepackage{float}
+\usepackage{placeins}
+
+\usepackage{xcolor}
+
+
+% ============================================================
+% COMPACT REPORT FORMATTING
+% ============================================================
+
+\captionsetup{
+    font=footnotesize,
+    labelfont=bf,
+    skip=3pt
+}
+
+\captionsetup[subfigure]{
+    font=scriptsize,
+    labelfont=normalfont,
+    skip=1pt
+}
+
+\setlength{\textfloatsep}{5pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+
+\setlength{\parskip}{2pt}
+
+% Compile safely even if a planned figure has not yet been generated.
+\newcommand{\figorplaceholder}[2]{%
+\IfFileExists{#1}{%
+    \includegraphics[width=#2]{#1}%
+}{%
+    \fbox{\parbox[c][0.18\textheight][c]{0.92\linewidth}{%
+        \centering
+        Figure not generated yet:\\
+        \texttt{\detokenize{#1}}
+    }}%
+}%
+}
+
+% Values that were not serialized by the experiment scripts are reported explicitly.
+\newcommand{\notrecorded}{\textit{not saved}}
+
+
+% ============================================================
+% TITLE
+% ============================================================
+
+\title{
+ATML PA2 Report\\
+Preference Optimization, Online RL, Safety, and Feedback Sources
+}
+
+
+% ============================================================
+% AUTHOR
+% ============================================================
+
+\author{
+Muhammad Abdullah Khan\\
+Lahore University of Management Sciences
+}
+
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+
+\begin{document}
+
+\maketitle
+
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+
+\begin{abstract}
+% WRITE THIS LAST, IN YOUR OWN WORDS.
+%
+% Suggested content:
+% - overall goal of the assignment
+% - DPO / PPO / GRPO / safety / RLVR-vs-RLAIF
+% - strongest empirical finding
+% - important limitation or disagreement between metric and quality
+%
+% IMPORTANT MANUAL REQUIREMENT:
+% End the abstract with the public GitHub repository link.
+%
+% Repository: \url{YOUR_GITHUB_REPOSITORY_URL}
+\end{abstract}
+
+\vspace{3pt}
+
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+
+\section{Introduction}
+
+% WRITE IN YOUR OWN WORDS.
+%
+% Suggested flow:
+% 1. Post-training changes model behavior using preferences/rewards.
+% 2. High optimization scores do not necessarily imply better behavior.
+% 3. Briefly introduce:
+%    - offline DPO
+%    - online PPO
+%    - critic-free GRPO
+%    - safety calibration
+%    - exact verifier vs AI feedback
+% 4. State the main scientific questions of the assignment.
+
+\vspace{3pt}
+
+
+% ============================================================
+% 2. METHODOLOGY
+% ============================================================
+
+\section{Methodology}
+
+\paragraph{Models and training setup.}
+
+% WRITE IN YOUR OWN WORDS.
+%
+% Mention:
+% - Qwen/Qwen2.5-1.5B-Instruct policy family
+% - reward model
+% - Task 4/5 AI judge
+% - LoRA
+% - fixed seeds / fixed prompt IDs
+% - Apple MPS environment
+% - fixed course assets
+% - only task-specific ablations changed the designated variable
+
+\begin{center}
+\captionof{table}{Core experimental setup and implementation notes.}
+\label{tab:setup}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{p{0.24\linewidth}p{0.66\linewidth}}
+\toprule
+Item & Value / note \\
+\midrule
+Base policy
+& Qwen/Qwen2.5-1.5B-Instruct \\
+
+Reward model
+& yavuz-ai/qwen2.5-1.5b-rm-ultrafeedback \\
+
+AI judge
+& Qwen/Qwen2.5-3B-Instruct \\
+
+Adapter setup
+& LoRA, rank 8, alpha 16, dropout 0.05; Task 1 targets q/v projections \\
+
+Environment
+& Apple MPS/fp16 path; frozen reward/judge models use Mac-compatible loading rather than CUDA-specific quantization where necessary \\
+
+Reproducibility
+& Fixed course splits, prompt IDs, decoding settings, seeds where practical, and machine-readable saved logs \\
+
+Task 1 preprocessing note
+& Prompts exceeding the configured maximum sequence length on their own were skipped rather than truncating the conditioning prompt \\
+
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\paragraph{Evaluation protocol.}
+
+% WRITE IN YOUR OWN WORDS.
+%
+% Explain:
+% - held-out evaluation
+% - same prompt/decoding settings within comparisons
+% - sampled KL estimator
+% - reward-model score is not an absolute quality scale
+% - response length uses generated tokens
+% - qualitative failure cases complement aggregate metrics
+%
+% IMPORTANT:
+% Include mean + a dispersion statistic for response length
+% wherever the manual requests length statistics.
+
+
+\vspace{3pt}
+
+
+% ============================================================
+% 3. TASK 1
+% ============================================================
+
+\section{Task 1: Direct Preference Optimization}
+
+\paragraph{Setup.}
+
+% EXPLAIN IN YOUR OWN WORDS:
+%
+% - offline chosen/rejected preference pairs
+% - trainable policy versus frozen reference
+% - LoRA adaptation
+% - DPO objective
+% - beta
+% - standard 1-epoch run
+% - short beta forks
+% - length-balanced diagnostic run
+%
+% Task 1 actual config:
+% beta = 0.10
+% betas = [0.03, 0.10, 0.30]
+% learning rate = 2e-5
+% batch size = 2
+% grad accumulation = 8
+% epoch = 1
+% max sequence length = 768
+% max generation tokens = 256
+% LoRA r = 8, alpha = 16, dropout = 0.05
+% target modules = q_proj, v_proj
+
+
+% ------------------------------------------------------------
+% TASK 1.1 + 1.2
+% ------------------------------------------------------------
+
+\paragraph{Standard DPO and regularization-strength study.}
+
+% INTERPRET:
+% - standard run versus the three matched short beta forks
+% - standard full run has a DIFFERENT training budget
+% - preference accuracy and reward score need not agree
+% - relationship with beta was not monotonic in the saved runs
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task1_dpo_beta_ablation.png}{0.86\linewidth}
+\caption{
+Effect of DPO beta on held-out preference accuracy, reward-model score,
+and response length. The standard one-epoch model and the short beta forks
+use different training budgets and should not be interpreted as a directly
+matched comparison.
+}
+\label{fig:task1-beta}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{Task 1 DPO summary.}
+\label{tab:task1-dpo}
+\small
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrrrrr}
+\toprule
+Run & Beta & Steps & Pref. acc. & Loss & KL & Reward & Mean len. (SD) \\
+\midrule
+standard
+& 0.10 & 94 & 0.641 & 0.674 & 0.00037 & 0.896 & 156.4 (106.6) \\
+
+beta\_0\_03
+& 0.03 & 38 & 0.631 & 0.687 & -0.00028 & 0.945 & 157.9 (104.9) \\
+
+beta\_0\_10
+& 0.10 & 38 & 0.645 & 0.687 & -0.00030 & 0.933 & 153.3 (105.8) \\
+
+beta\_0\_30
+& 0.30 & 38 & 0.631 & 0.688 & -0.00023 & 0.954 & 157.5 (105.8) \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+% REQUIRED LENGTH DISPERSION:
+% Add response-length SD or IQR to either:
+% - this table,
+% - the figure,
+% - or one sentence in the text.
+%
+% Sample SD computed from the original saved response_length fields.
+
+
+% ------------------------------------------------------------
+% TASK 1.3
+% ------------------------------------------------------------
+
+\paragraph{Length-confounding study.}
+
+% REQUIRED DISCUSSION:
+% - dataset length correlation is NOT the same thing as generated-length shift
+% - compare standard vs length-balanced DPO
+% - interpret EACH length stratum separately
+% - include common word-limit compliance
+% - do not claim length explains everything
+
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task1_length_bias_summary.png}{0.82\linewidth}
+\caption{
+Aggregate comparison of standard and length-balanced DPO on the
+length-controlled evaluation.
+}
+\label{fig:task1-length}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{
+Aggregate Task 1 length-balancing comparison on the saved length-stratified evaluation.
+}
+\label{tab:task1-length}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+Run & Pref. acc. & Loss & KL & Reward & Mean length (SD) \\
+\midrule
+standard DPO
+& 0.561 & 0.682 & 0.00093 & 1.411 & 142.8 (98.2) \\
+
+length-balanced DPO
+& 0.595 & 0.676 & 0.00416 & 1.561 & 140.2 (95.4) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+% REQUIRED MANUAL EVIDENCE:
+% These should be recovered/calculated if possible before submission.
+
+\begin{center}
+\captionof{table}{Frozen-checkpoint post-hoc evaluation of the existing adapters:
+preference accuracy on 78 preferred-longer, 80 length-matched and 79
+rejected-longer pairs; compliance on the fixed ten word-limit prompts.}
+\label{tab:task1-strata}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrr}
+\toprule
+Run & Preferred longer & Length matched & Rejected longer & Word-limit compliance \\
+\midrule
+standard DPO & 0.4359 & 0.5625 & 0.6835 & 0.7000 \\
+length-balanced DPO & 0.4487 & 0.5625 & 0.7722 & 0.6000 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+
+\paragraph{Qualitative evidence.}
+
+% REQUIRED, NOT OPTIONAL.
+%
+% Include two very short examples:
+%
+% Example A:
+% preference/reward metric improves but actual quality is worse
+% due to correctness, concision, or instruction compliance.
+%
+% Example B:
+% illustrates length bias and/or word-limit compliance.
+%
+% Quote only the minimum response text needed.
+
+
+
+
+% ============================================================
+% 4. TASK 2
+% ============================================================
+
+\section{Task 2: Proximal Policy Optimization}
+
+\paragraph{Setup.}
+
+% EXPLAIN IN YOUR OWN WORDS:
+%
+% - continued from supplied PPO midpoint checkpoint
+% - online rollout generation
+% - reward model
+% - learned critic/value model
+% - advantage estimation
+% - pi_old vs pi_theta
+% - clipping epsilon
+% - pi_ref and KL pressure
+%
+% Actual config:
+% standard continuation updates = 20
+% fork updates = 8
+% ppo epochs = 2
+% policy LR = 3e-6
+% value LoRA LR = 1e-4
+% value-head LR = 3e-4
+% clip epsilon = 0.20
+% clipping ablations = [0.05, 0.20, 0.50]
+% KL beta = 0.10
+% KL ablations = [0.00, 0.10, 0.20]
+
+
+% ------------------------------------------------------------
+% TASK 2.1
+% ------------------------------------------------------------
+
+\paragraph{Standard PPO continuation and training dynamics.}
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task2_ppo_standard_trajectory.png}{0.92\linewidth}
+\caption{
+Standard PPO continuation diagnostics across 20 updates:
+reward, sampled KL, policy/value loss, entropy, clip fraction,
+gradient norm, and response length.
+}
+\label{fig:task2-trajectory}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{Standard PPO held-out evaluation and compute summary.}
+\label{tab:task2-standard}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Evaluation examples & 200 \\
+Reward-model score & 1.4073 \\
+Sampled KL & -0.0000587 \\
+Entropy & 0.7834 \\
+Mean response length & 301.38 \\
+Response-length sample SD & 247.22 tokens \\
+Termination rate & 0.920 \\
+Peak VRAM / peak MPS memory & not recorded; summary reports 0 \\
+Wall-clock time & 6.32 min \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+% ------------------------------------------------------------
+% TASK 2.2
+% ------------------------------------------------------------
+
+\paragraph{Clipping study.}
+
+% EXPLAIN:
+% - cached rollout lets epsilon be changed on IDENTICAL data
+% - epsilon 0.05 strongly constrains more tokens
+% - epsilon 0.20 barely binds
+% - epsilon 0.50 effectively does not bind
+% - matched short continuation forks test whether this affects behavior
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task2_ppo_ablations.png}{0.88\linewidth}
+\caption{
+PPO ablations: cached clipping diagnostics, matched clipping forks,
+and KL-pressure forks.
+}
+\label{fig:task2-ablations}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{Cached clipping diagnostic.}
+\label{tab:task2-clipping-cache}
+\small
+\setlength{\tabcolsep}{7pt}
+\begin{tabular}{rrr}
+\toprule
+$\epsilon$ & Clip fraction & Affected-token fraction \\
+\midrule
+0.05 & 0.1373 & 0.1373 \\
+0.20 & 0.0018 & 0.0018 \\
+0.50 & 0.0000 & 0.0000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\captionof{table}{Matched PPO clipping and KL-pressure forks.}
+\label{tab:task2-ablations}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrr}
+\toprule
+Condition & Reward & KL & Entropy & Mean len. & Max. preclip grad. \\
+\midrule
+clip 0.05
+& 1.260 & 0.000048 & 0.783 & 299.3 & 1.909 \\
+
+clip 0.20
+& 1.285 & 0.000038 & 0.786 & 282.1 & 2.568 \\
+
+clip 0.50
+& 1.285 & 0.000038 & 0.786 & 282.1 & 2.568 \\
+
+KL 0.00
+& 1.292 & -0.000005 & 0.775 & 289.9 & 1.899 \\
+
+KL 0.10
+& 1.285 & 0.000038 & 0.786 & 282.1 & 2.568 \\
+
+KL 0.20
+& 1.347 & -0.000036 & 0.779 & 308.1 & 2.432 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% DEFINE THE STABILITY STATISTIC IN THE TEXT.
+% Example possibilities, depending on what is actually saved:
+% - standard deviation of reward across fork updates
+% - standard deviation of policy loss
+% - gradient norm variance
+% - maximum gradient norm
+%
+% Do NOT invent one; compute from saved logs.
+
+
+% ------------------------------------------------------------
+% TASK 2.3
+% ------------------------------------------------------------
+
+\paragraph{KL pressure and reward overoptimization.}
+
+% REQUIRED DISCUSSION:
+% - beta_KL changes pressure against drifting from pi_ref
+% - relationship in your short runs was non-monotonic
+% - do not claim beta_KL=0.20 is universally best
+% - inspect whether reward gains correspond to actual quality
+%
+% IMPORTANT CROSS-TASK INSIGHT TO USE LATER IN DISCUSSION:
+% KL regularization anchors the policy to the chosen reference,
+% but the reference itself may contain undesirable tendencies
+% (for example verbosity), so strong KL can preserve these too.
+
+
+\paragraph{Qualitative evidence.}
+
+% REQUIRED:
+% - one case where higher reward corresponds to better response quality
+% - one case where reward and response quality disagree
+
+
+
+
+% ============================================================
+% 5. TASK 3
+% ============================================================
+
+\section{Task 3: Group Relative Policy Optimization}
+
+\paragraph{Setup.}
+
+% EXPLAIN IN YOUR OWN WORDS:
+%
+% - GRPO removes PPO's critic
+% - samples K completions for the same prompt
+% - reward-normalized group-relative advantage
+% - uninformative groups when reward std ~= 0
+% - PPO-style pi_theta/pi_old ratio and clipping remain
+% - KL to pi_ref remains
+% - standard K = 4
+%
+% Actual config:
+% standard updates = 20
+% fork updates = 8
+% policy epochs = 1
+% LR = 5e-6
+% epsilon = 0.20
+% KL beta = 0.10
+% K = 4
+% group sizes = [2, 4, 8]
+% max prompt length = 256
+% max completion length = 512
+% mask truncated completions = true
+
+
+% ------------------------------------------------------------
+% TASK 3.1
+% ------------------------------------------------------------
+
+\paragraph{Standard GRPO continuation.}
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task3_grpo_standard_trajectory.png}{0.92\linewidth}
+\caption{
+Standard GRPO continuation diagnostics across training:
+reward, sampled KL, within-group reward standard deviation,
+uninformative-group rate, policy loss, gradient norm,
+entropy, and response length.
+}
+\label{fig:task3-trajectory}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{Standard GRPO held-out evaluation and compute summary.}
+\label{tab:task3-standard}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Evaluation examples & 200 \\
+Reward-model score & 1.1125 \\
+Sampled KL & 0.0000617 \\
+Entropy & 0.8278 \\
+Mean response length & 261.12 \\
+Response-length sample SD & 187.65 tokens \\
+Termination rate & 0.785 \\
+Truncation rate & 0.215 \\
+Peak VRAM / peak MPS memory & not recorded; summary reports 0 \\
+Wall-clock time & 18.37 min \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+% ------------------------------------------------------------
+% TASK 3.2
+% ------------------------------------------------------------
+
+\paragraph{Group-size study.}
+
+% IMPORTANT:
+% Equal TOTAL generation budget.
+%
+% K=2 -> 96 prompt groups
+% K=4 -> 48 prompt groups
+% K=8 -> 24 prompt groups
+%
+% Discuss:
+% - informativeness
+% - group reward std
+% - variance of group-relative signal
+% - low/high difficulty bins
+% - larger K means more completions per prompt but fewer prompts
+
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task3_group_size_and_normalization.png}{0.80\linewidth}
+\caption{
+GRPO group-size diagnostics and normalization comparison.
+Prompt difficulty bins are defined using the fixed diagnostic rule
+used in the analysis script.
+}
+\label{fig:task3-group-normalization}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{GRPO equal-generation group-size diagnostic.}
+\label{tab:task3-groups}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rrrrrrr}
+\toprule
+$K$
+& Groups
+& Info. rate
+& Mean group std
+& Rel.-signal var.
+& Low-bin info.
+& High-bin info. \\
+\midrule
+2
+& 96
+& 0.9375
+& 0.3846
+& 0.9375
+& 0.8958
+& 0.9792 \\
+
+4
+& 48
+& 0.9583
+& 0.5410
+& 0.9583
+& 0.9167
+& 1.0000 \\
+
+8
+& 24
+& 0.9583
+& 0.6191
+& 0.9583
+& 0.9167
+& 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+% ------------------------------------------------------------
+% TASK 3.3
+% ------------------------------------------------------------
+
+\paragraph{Length-normalization study.}
+
+% EXPLAIN:
+% - canonical GRPO normalizes each completion by its own length
+% - this changes per-token weighting for short vs long completions
+% - Dr.-GRPO changes normalization while keeping reward fixed
+% - therefore systematic differences can be attributed to the
+%   optimization normalization rather than a new feedback source
+
+
+\begin{center}
+\captionof{table}{Canonical versus Dr.-GRPO matched short continuations.}
+\label{tab:task3-normalization}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrr}
+\toprule
+Condition
+& Reward
+& KL
+& Mean len.
+& Trunc. \\
+\midrule
+canonical GRPO
+& 0.9863
+& 0.000005
+& 260.5
+& 0.225 \\
+
+Dr.-GRPO
+& 0.9680
+& 0.000055
+& 262.9
+& 0.270 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\captionof{table}{Post-hoc normalization diagnostic on the fixed cache partitioned into K=4 groups,
+with identical rewards and masks. Mean absolute surrogate derivative with
+respect to token log probability is evaluated at new=old. Short: at most
+206 tokens (62 completions); long: over 206 tokens (60 completions).
+Seventy nonterminated or over-512-token completions are masked. These are
+log-probability derivatives, not parameter-gradient norms from the K=4 forks.}
+\label{tab:task3-length-gradients}
+\small
+\begin{tabular}{llrr}
+\toprule
+Normalization & Bin & Mean per-token absolute derivative & Mean completion sum \\
+\midrule
+GRPO & Short & $1.4834\times10^{-4}$ & 0.0039135 \\
+GRPO & Long & $1.1797\times10^{-5}$ & 0.0042074 \\
+Dr.-GRPO & Short & $7.6436\times10^{-6}$ & 0.0005264 \\
+Dr.-GRPO & Long & $8.2176\times10^{-6}$ & 0.0030643 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Qualitative evidence.}
+
+% REQUIRED:
+% Include a brief example useful for interpreting either:
+% - an informative/uninformative group
+% - or the length-normalization behavior
+
+
+
+
+% ============================================================
+% 6. TASK 4
+% ============================================================
+
+\section{Task 4: Safety Calibration}
+
+\paragraph{Setup.}
+
+% EXPLAIN IN YOUR OWN WORDS:
+%
+% - fixed XSTest prompts
+% - SFT / standard DPO / standard PPO / standard GRPO
+% - deterministic generation
+% - fixed categorical AI judge
+% - safe vs unsafe prompt distinction
+% - safety is calibration, not simply "refuse more"
+
+
+% ------------------------------------------------------------
+% TASK 4.1 + 4.2
+% ------------------------------------------------------------
+
+\paragraph{Policy-level safety calibration.}
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task4_safety_policy_summary.png}{0.78\linewidth}
+\caption{
+Policy-level XSTest safety calibration across SFT, DPO, PPO, and GRPO.
+}
+\label{fig:task4-summary}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{Task 4 safety calibration summary from the fixed AI judge.}
+\label{tab:task4-safety}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Policy
+& Safe ans.
+& Over-ref.
+& Just. ref.
+& Unsafe comp.
+& Ambig.
+& Calibrated
+& Mean tok. \\
+\midrule
+SFT
+& 0.704 & 0.272 & 0.805 & 0.190 & 0.011 & 0.749 & 105.9 \\
+
+DPO
+& 0.672 & 0.316 & 0.805 & 0.195 & 0.002 & 0.731 & 109.4 \\
+
+PPO
+& 0.704 & 0.272 & 0.805 & 0.190 & 0.011 & 0.749 & 106.6 \\
+
+GRPO
+& 0.708 & 0.264 & 0.810 & 0.185 & 0.013 & 0.753 & 107.1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\paragraph{Category-level behavior.}
+
+% MANUAL REQUIRES THE JUDGE-LABEL DISTRIBUTION ACROSS CATEGORIES
+% FOR ALL FOUR POLICIES.
+%
+% The existing over-refusal / unsafe-compliance heatmaps are useful,
+% but a fuller distribution figure/table should also exist.
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task4_category_label_distribution.png}{0.84\linewidth}
+\caption{
+Distribution of AI-judge behavior labels across XSTest categories
+for SFT, DPO, PPO, and GRPO.
+}
+\label{fig:task4-category-distribution}
+\end{figure}
+
+
+% Existing error-focused heatmap can be retained if space allows.
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task4_category_heatmaps.png}{0.78\linewidth}
+\caption{
+Category-level error rates. Left: over-refusal on safe prompts.
+Right: unsafe compliance on unsafe prompts.
+}
+\label{fig:task4-category-errors}
+\end{figure}
+
+
+% ------------------------------------------------------------
+% TASK 4.3
+% ------------------------------------------------------------
+
+\paragraph{Manual audit.}
+
+% REQUIRED:
+% - manually label the fixed 60-example subset WITHOUT viewing AI labels first
+% - same five behavior labels
+% - automated-vs-manual agreement
+% - confusion-style breakdown
+% - ambiguous information
+%
+% manual_audit_ids.csv has 60 example IDs
+% manual_audit_sheet.csv has 240 policy-response rows
+
+
+\begin{center}
+\captionof{table}{AI-judge versus manual-audit agreement.}
+\label{tab:task4-manual}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Overall agreement & 0.6333 \\
+AI ambiguous rate & 0.0000 \\
+Manual ambiguous rate & 0.0000 \\
+Audited prompt IDs & 60 \\
+Audited policy-response pairs & 240 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task4_manual_audit_confusion.png}{0.58\linewidth}
+\caption{
+Confusion-style comparison between the fixed AI judge and manual labels
+on the required audit subset.
+}
+\label{fig:task4-manual-confusion}
+\end{figure}
+
+
+\paragraph{Qualitative disagreement cases.}
+
+% REQUIRED:
+% Include short examples covering:
+%
+% 1. harmful compliance
+% 2. justified refusal
+% 3. exaggerated refusal / over-refusal
+%
+% For each, state whether the issue reflects:
+% - policy behavior,
+% - judge error,
+% - or both.
+
+
+
+
+% ============================================================
+% 7. TASK 5
+% ============================================================
+
+\section{Task 5: Feedback Source --- RLVR versus RLAIF}
+
+\paragraph{Setup.}
+
+% EXPLAIN IN YOUR OWN WORDS:
+%
+% - SFT / supplied RLVR / supplied RLAIF policies
+% - same policy family
+% - group-based optimization broadly matched
+% - RLVR uses exact final-answer verification
+% - RLAIF uses frozen AI pairwise preferences
+% - GSM8K is in-domain
+% - SVAMP is transfer/out-of-domain
+% - controlled diagnostic set isolates reward-source behavior
+
+
+% ------------------------------------------------------------
+% TASK 5.1 + 5.3
+% ------------------------------------------------------------
+
+\paragraph{In-domain and transfer performance.}
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task5_gsm_svamp_policy_comparison.png}{0.82\linewidth}
+\caption{
+In-domain GSM8K and out-of-domain SVAMP performance for SFT, RLVR,
+and RLAIF.
+}
+\label{fig:task5-policy-comparison}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{
+Task 5 exact-answer accuracy, format compliance, and response length.
+}
+\label{tab:task5-metrics}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrr}
+\toprule
+Dataset & Policy & Exact acc. & Format & Mean tok. (SD) & Trunc. \\
+\midrule
+GSM8K & SFT
+& 0.293 & 0.400 & 284.1 (100.4) & 0.047 \\
+
+GSM8K & RLVR
+& 0.290 & 0.420 & 283.9 (99.1) & 0.043 \\
+
+GSM8K & RLAIF
+& 0.297 & 0.407 & 289.1 (99.3) & 0.043 \\
+
+SVAMP & SFT
+& 0.560 & 0.670 & 162.5 (71.5) & 0.010 \\
+
+SVAMP & RLVR
+& 0.450 & 0.570 & 168.1 (102.2) & 0.010 \\
+
+SVAMP & RLAIF
+& 0.570 & 0.630 & 171.2 (76.0) & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+% REQUIRED:
+% Add response-length SD or IQR for these conditions if available.
+
+
+\begin{center}
+\captionof{table}{
+Verifier--judge agreement and its change from GSM8K to SVAMP.
+}
+\label{tab:task5-agreement-transfer}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+Pairwise comparison
+& GSM8K verifier--judge agreement
+& SVAMP verifier--judge agreement
+& SVAMP minus GSM8K \\
+\midrule
+RLVR vs RLAIF
+& 0.373 & 0.260 & -0.113 \\
+
+SFT vs RLAIF
+& 0.383 & 0.300 & -0.083 \\
+
+SFT vs RLVR
+& 0.387 & 0.300 & -0.087 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% NOTE:
+% Depending on how agreement is defined in the saved analysis,
+% it may be more appropriate to report agreement per PAIRWISE COMPARISON
+% rather than per policy. Match the implementation's actual definition.
+%
+% The manual explicitly requires verifier--judge agreement and
+% the transfer drop/change where applicable.
+
+
+% ------------------------------------------------------------
+% TASK 5 PAIRWISE RESULTS
+% ------------------------------------------------------------
+
+\begin{center}
+\captionof{table}{Task 5 pairwise AI-judge outcomes.}
+\label{tab:task5-pairwise}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrr}
+\toprule
+Dataset & Comparison & First wins & Second wins & Ties \\
+\midrule
+GSM8K
+& RLVR vs RLAIF
+& 103 & 95 & 102 \\
+
+GSM8K
+& SFT vs RLAIF
+& 99 & 103 & 98 \\
+
+GSM8K
+& SFT vs RLVR
+& 98 & 105 & 97 \\
+
+SVAMP
+& RLVR vs RLAIF
+& 37 & 37 & 26 \\
+
+SVAMP
+& SFT vs RLAIF
+& 44 & 36 & 20 \\
+
+SVAMP
+& SFT vs RLVR
+& 34 & 40 & 26 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+% ------------------------------------------------------------
+% TASK 5.2
+% ------------------------------------------------------------
+
+\paragraph{Controlled feedback diagnostics.}
+
+% REQUIRED:
+% For EACH perturbation category and EACH feedback mechanism:
+% - intended-better rate
+% - tie rate
+% - wrong-preference rate
+%
+% Also report:
+% - S_reason
+% - S_outcome
+
+\begin{figure}[H]
+\centering
+\figorplaceholder{figures/task5_controlled_feedback_diagnostics.png}{0.78\linewidth}
+\caption{
+Controlled reward-source diagnostic. Bars show how often each feedback
+mechanism prefers the diagnostically intended-better response, ties,
+or prefers the intended-worse response.
+}
+\label{fig:task5-controlled}
+\end{figure}
+
+
+\begin{center}
+\captionof{table}{
+Controlled diagnostic preference rates for the exact verifier and AI judge.
+}
+\label{tab:task5-controlled}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrr}
+\toprule
+Feedback
+& Perturbation
+& Better
+& Tie
+& Wrong \\
+\midrule
+
+Exact verifier
+& distractor robustness
+& 1.00 & 0.00 & 0.00 \\
+
+Exact verifier
+& filler susceptibility
+& 0.00 & 1.00 & 0.00 \\
+
+Exact verifier
+& final vs reasoning
+& 1.00 & 0.00 & 0.00 \\
+
+Exact verifier
+& outcome sensitivity
+& 1.00 & 0.00 & 0.00 \\
+
+Exact verifier
+& reasoning sensitivity
+& 0.00 & 1.00 & 0.00 \\
+
+\midrule
+
+AI judge
+& distractor robustness
+& 0.00 & 1.00 & 0.00 \\
+
+AI judge
+& filler susceptibility
+& 0.10 & 0.35 & 0.55 \\
+
+AI judge
+& final vs reasoning
+& 0.20 & 0.80 & 0.00 \\
+
+AI judge
+& outcome sensitivity
+& 0.15 & 0.85 & 0.00 \\
+
+AI judge
+& reasoning sensitivity
+& 0.10 & 0.60 & 0.30 \\
+
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\captionof{table}{
+Controlled reasoning and outcome sensitivity summary.
+}
+\label{tab:task5-sensitivity}
+\small
+\setlength{\tabcolsep}{7pt}
+\begin{tabular}{lrr}
+\toprule
+Feedback mechanism
+& $S_{\mathrm{reason}}$
+& $S_{\mathrm{outcome}}$ \\
+\midrule
+Exact verifier
+& 0.00 & 1.00 \\
+
+AI judge
+& 0.10 & 0.15 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\paragraph{Qualitative diagnostic cases.}
+
+% REQUIRED:
+% Include short examples spanning:
+%
+% 1. reasoning corruption while final answer remains correct
+% 2. persuasive / irrelevant filler
+% 3. wrong final answer with gold-number distractor
+%
+% Use them to explain verifier--judge disagreement.
+
+
+\paragraph{Feedback-source comparison.}
+
+% REQUIRED DISCUSSION:
+%
+% Compare RLVR and RLAIF in terms of:
+% - feedback coverage
+% - noise
+% - exploitability
+% - inference cost
+%
+% Do NOT compare raw binary RLVR reward numerically against
+% RLAIF pairwise win-rate as though they share a calibrated scale.
+
+
+
+
+% ============================================================
+% 8. CROSS-TASK DISCUSSION
+% ============================================================
+
+\section{Cross-Task Discussion}
+
+% WRITE IN YOUR OWN WORDS.
+%
+% Suggested structure:
+%
+% 1. Preference strength versus policy drift
+%    - DPO beta
+%    - PPO KL pressure
+%    - GRPO normalization
+%    - KL / reward / entropy / length
+%
+% 2. Offline versus online feedback
+%    - DPO fixed preference pairs
+%    - PPO/GRPO sampled rollouts
+%
+% 3. Optimization bias
+%    - DPO length confounding
+%    - PPO clipping / reward overoptimization
+%    - GRPO group informativeness / sequence normalization
+%
+% 4. Safety calibration
+%    - whether better preference/reward metrics implied better safety
+%    - safe over-refusal versus unsafe compliance
+%
+% 5. Reward-source design
+%    - learned preference reward
+%    - exact verification
+%    - AI feedback
+%
+% IMPORTANT KL DISCUSSION POINT:
+%
+% KL regularization protects useful behavior by anchoring the optimized
+% policy to the reference policy. However, the reference policy is not
+% necessarily ideal or unbiased. If it already contains undesirable
+% tendencies such as verbosity, excessive caution, or other stylistic
+% biases, stronger KL pressure can also preserve those tendencies.
+%
+% This means "lower KL" should not automatically be interpreted as
+% "better alignment."
+
+
+
+
+% ============================================================
+% 9. LIMITATIONS
+% ============================================================
+
+\section{Limitations}
+
+% WRITE IN YOUR OWN WORDS.
+%
+% Potential items supported by this project:
+%
+% - Apple MPS/fp16 environment rather than the intended CUDA path
+% - Mac-compatible unquantized loading for some frozen models
+% - Task 1 overlong-prompt filtering
+% - small / short ablation budgets
+% - sampled KL estimator can be slightly negative
+% - learned reward model is not calibrated model quality
+% - PPO critic is imperfect
+% - GRPO truncation is nontrivial
+% - AI safety judge is imperfect
+% - strict Task 5 final-answer formatting affects exact accuracy
+% - manual audit sample is finite
+%
+% Do not describe required evidence as "missing" in the final report
+% if it can still be recovered before submission.
+
+
+
+
+% ============================================================
+% 10. CONCLUSION
+% ============================================================
+
+\section{Conclusion}
+
+% WRITE 3--5 SENTENCES IN YOUR OWN WORDS.
+%
+% Suggested content:
+% - strongest empirical conclusion
+% - one result showing metrics/objectives can disagree
+% - one limitation
+% - general lesson about post-training objectives and feedback
+
+
+% ============================================================
+% REFERENCES
+% ============================================================
+
+% References do not count toward the 8-page main-content limit.
+%
+% Recommended citations from the assignment:
+% - Rafailov et al. (2023) DPO
+% - Schulman et al. (2017) PPO
+% - Ouyang et al. (2022) RLHF / InstructGPT
+% - Shao et al. (2024) DeepSeekMath / GRPO
+% - Liu et al. (2025) GRPO / Dr.-GRPO analysis
+% - Rottger et al. (2023) XSTest
+% - DeepSeek-R1 paper for RLVR context
+% - Lee et al. (2024) RLAIF vs RLHF
+%
+% If references.bib exists, use it. Otherwise the document still compiles.
+
+\IfFileExists{references.bib}{
+    \bibliographystyle{plainnat}
+    \bibliography{references}
+}{
+    \section*{References}
+    % Create references.bib before final submission.
+}
+
+
+\end{document}

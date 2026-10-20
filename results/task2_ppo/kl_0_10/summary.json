@@ -1,0 +1,10 @@
+{
+  "run": "kl_0_10",
+  "updates": 8,
+  "output_dir": "outputs/task2_ppo/kl_0_10",
+  "value_output_dir": "outputs/task2_ppo/kl_0_10/value_model",
+  "clip_epsilon": 0.2,
+  "kl_beta": 0.1,
+  "wall_time_seconds": 263.0436160419922,
+  "peak_vram_bytes": 0
+}

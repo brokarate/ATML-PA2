@@ -1,0 +1,19 @@
+{
+  "name": "standard",
+  "adapter": "outputs/task1_dpo/standard",
+  "eval_file": "data/dpo_standard_eval.jsonl",
+  "preference": {
+    "loss": 0.6735324021043448,
+    "preference_accuracy": 0.6413793103448275,
+    "logit_mean": 0.04704068436383687,
+    "policy_margin_mean": -11.198378983859358,
+    "examples": 290
+  },
+  "generation": {
+    "examples": 300,
+    "sampled_kl": 0.00036867623054301173,
+    "mean_response_length": 156.37666666666667,
+    "reward_model_score": 0.8963548787434896
+  },
+  "skipped_overlong_prompts": 10
+}

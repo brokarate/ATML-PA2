@@ -1,0 +1,79 @@
+{
+  "dataset": "transfer",
+  "examples": 100,
+  "policies": {
+    "rlaif": {
+      "examples": 100,
+      "exact_accuracy": 0.57,
+      "designated_final_rate": 0.63,
+      "mean_response_tokens": 171.15,
+      "terminated_rate": 1.0,
+      "truncated_rate": 0.0,
+      "label_distribution": {
+        "correct": 57,
+        "wrong": 43
+      }
+    },
+    "rlvr": {
+      "examples": 100,
+      "exact_accuracy": 0.45,
+      "designated_final_rate": 0.57,
+      "mean_response_tokens": 168.11,
+      "terminated_rate": 0.99,
+      "truncated_rate": 0.01,
+      "label_distribution": {
+        "wrong": 55,
+        "correct": 45
+      }
+    },
+    "sft": {
+      "examples": 100,
+      "exact_accuracy": 0.56,
+      "designated_final_rate": 0.67,
+      "mean_response_tokens": 162.46,
+      "terminated_rate": 0.99,
+      "truncated_rate": 0.01,
+      "label_distribution": {
+        "correct": 56,
+        "wrong": 44
+      }
+    }
+  },
+  "pairwise": {
+    "rlvr_vs_rlaif": {
+      "comparisons": 100,
+      "winner_counts": {
+        "rlaif": 37,
+        "tie": 26,
+        "rlvr": 37
+      },
+      "judge_exact_agreement_rate": 0.26,
+      "left_win_rate_ties_half": 0.5,
+      "right_win_rate_ties_half": 0.5
+    },
+    "sft_vs_rlaif": {
+      "comparisons": 100,
+      "winner_counts": {
+        "sft": 44,
+        "rlaif": 36,
+        "tie": 20
+      },
+      "judge_exact_agreement_rate": 0.3,
+      "left_win_rate_ties_half": 0.54,
+      "right_win_rate_ties_half": 0.46
+    },
+    "sft_vs_rlvr": {
+      "comparisons": 100,
+      "winner_counts": {
+        "rlvr": 40,
+        "sft": 34,
+        "tie": 26
+      },
+      "judge_exact_agreement_rate": 0.3,
+      "left_win_rate_ties_half": 0.47,
+      "right_win_rate_ties_half": 0.53
+    }
+  },
+  "generations": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task5_feedback/transfer_generations.jsonl",
+  "pairwise_file": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task5_feedback/transfer_pairwise.jsonl"
+}

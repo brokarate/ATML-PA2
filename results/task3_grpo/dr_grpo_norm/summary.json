@@ -1,0 +1,8 @@
+{
+  "run": "dr_grpo_norm",
+  "updates": 8,
+  "loss_type": "dr_grpo",
+  "output_dir": "outputs/task3_grpo/dr_grpo_norm",
+  "wall_time_seconds": 568.0353899170004,
+  "peak_vram_bytes": 0
+}

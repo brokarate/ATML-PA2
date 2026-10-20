@@ -1,0 +1,6 @@
+comparison,examples,exact_better_rate,exact_tie_rate,exact_wrong_rate,ai_better_rate,ai_tie_rate,ai_wrong_rate
+distractor_robustness,20,1.0,0.0,0.0,0.0,1.0,0.0
+filler_susceptibility,20,0.0,1.0,0.0,0.1,0.35,0.55
+final_vs_reasoning,20,1.0,0.0,0.0,0.2,0.8,0.0
+outcome_sensitivity,20,1.0,0.0,0.0,0.15,0.85,0.0
+reasoning_sensitivity,20,0.0,1.0,0.0,0.1,0.6,0.3

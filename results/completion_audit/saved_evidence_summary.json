@@ -1,0 +1,616 @@
+{
+  "saved_metrics": {
+    "response_length_dispersion": [
+      {
+        "task": "task1_dpo",
+        "run": "beta_0_03",
+        "examples": 300,
+        "mean_tokens": 157.94666666666666,
+        "sample_sd_tokens": 104.91527313669212,
+        "q25_linear": 42.0,
+        "q75_linear": 256.0,
+        "iqr_linear": 214.0
+      },
+      {
+        "task": "task1_dpo",
+        "run": "beta_0_10",
+        "examples": 300,
+        "mean_tokens": 153.30333333333334,
+        "sample_sd_tokens": 105.78809823407434,
+        "q25_linear": 36.0,
+        "q75_linear": 256.0,
+        "iqr_linear": 220.0
+      },
+      {
+        "task": "task1_dpo",
+        "run": "beta_0_30",
+        "examples": 300,
+        "mean_tokens": 157.46666666666667,
+        "sample_sd_tokens": 105.80155379217429,
+        "q25_linear": 44.75,
+        "q75_linear": 256.0,
+        "iqr_linear": 211.25
+      },
+      {
+        "task": "task1_dpo",
+        "run": "length_balanced_stratified",
+        "examples": 237,
+        "mean_tokens": 140.23206751054852,
+        "sample_sd_tokens": 95.428610203039,
+        "q25_linear": 41.0,
+        "q75_linear": 256.0,
+        "iqr_linear": 215.0
+      },
+      {
+        "task": "task1_dpo",
+        "run": "standard",
+        "examples": 300,
+        "mean_tokens": 156.37666666666667,
+        "sample_sd_tokens": 106.55616128242598,
+        "q25_linear": 37.75,
+        "q75_linear": 256.0,
+        "iqr_linear": 218.25
+      },
+      {
+        "task": "task1_dpo",
+        "run": "standard_length_stratified",
+        "examples": 237,
+        "mean_tokens": 142.77637130801688,
+        "sample_sd_tokens": 98.2113154894416,
+        "q25_linear": 40.0,
+        "q75_linear": 256.0,
+        "iqr_linear": 216.0
+      },
+      {
+        "task": "task2_ppo",
+        "run": "clip_0_05",
+        "examples": 200,
+        "mean_tokens": 299.305,
+        "sample_sd_tokens": 261.09970750904057,
+        "q25_linear": 61.75,
+        "q75_linear": 477.25,
+        "iqr_linear": 415.5
+      },
+      {
+        "task": "task2_ppo",
+        "run": "clip_0_20",
+        "examples": 200,
+        "mean_tokens": 282.07,
+        "sample_sd_tokens": 245.23151834121913,
+        "q25_linear": 62.0,
+        "q75_linear": 457.0,
+        "iqr_linear": 395.0
+      },
+      {
+        "task": "task2_ppo",
+        "run": "clip_0_50",
+        "examples": 200,
+        "mean_tokens": 282.07,
+        "sample_sd_tokens": 245.23151834121913,
+        "q25_linear": 62.0,
+        "q75_linear": 457.0,
+        "iqr_linear": 395.0
+      },
+      {
+        "task": "task2_ppo",
+        "run": "kl_0_00",
+        "examples": 200,
+        "mean_tokens": 289.875,
+        "sample_sd_tokens": 243.4003451416521,
+        "q25_linear": 68.0,
+        "q75_linear": 474.25,
+        "iqr_linear": 406.25
+      },
+      {
+        "task": "task2_ppo",
+        "run": "kl_0_10",
+        "examples": 200,
+        "mean_tokens": 282.07,
+        "sample_sd_tokens": 245.23151834121913,
+        "q25_linear": 62.0,
+        "q75_linear": 457.0,
+        "iqr_linear": 395.0
+      },
+      {
+        "task": "task2_ppo",
+        "run": "kl_0_20",
+        "examples": 200,
+        "mean_tokens": 308.06,
+        "sample_sd_tokens": 255.63034004939408,
+        "q25_linear": 58.75,
+        "q75_linear": 495.5,
+        "iqr_linear": 436.75
+      },
+      {
+        "task": "task2_ppo",
+        "run": "standard",
+        "examples": 200,
+        "mean_tokens": 301.375,
+        "sample_sd_tokens": 247.21580175666554,
+        "q25_linear": 81.0,
+        "q75_linear": 479.5,
+        "iqr_linear": 398.5
+      },
+      {
+        "task": "task3_grpo",
+        "run": "dr_grpo_norm",
+        "examples": 200,
+        "mean_tokens": 262.87,
+        "sample_sd_tokens": 192.99124644923705,
+        "q25_linear": 72.5,
+        "q75_linear": 512.0,
+        "iqr_linear": 439.5
+      },
+      {
+        "task": "task3_grpo",
+        "run": "grpo_norm",
+        "examples": 200,
+        "mean_tokens": 260.475,
+        "sample_sd_tokens": 189.5597103658102,
+        "q25_linear": 64.25,
+        "q75_linear": 463.75,
+        "iqr_linear": 399.5
+      },
+      {
+        "task": "task3_grpo",
+        "run": "standard",
+        "examples": 200,
+        "mean_tokens": 261.115,
+        "sample_sd_tokens": 187.64558642698645,
+        "q25_linear": 75.75,
+        "q75_linear": 459.0,
+        "iqr_linear": 383.25
+      },
+      {
+        "task": "task4_safety",
+        "run": "dpo",
+        "examples": 450,
+        "mean_tokens": 109.44444444444444,
+        "sample_sd_tokens": 82.19051570024072,
+        "q25_linear": 42.0,
+        "q75_linear": 168.0,
+        "iqr_linear": 126.0
+      },
+      {
+        "task": "task4_safety",
+        "run": "grpo",
+        "examples": 450,
+        "mean_tokens": 107.0911111111111,
+        "sample_sd_tokens": 80.08402136259488,
+        "q25_linear": 42.0,
+        "q75_linear": 157.0,
+        "iqr_linear": 115.0
+      },
+      {
+        "task": "task4_safety",
+        "run": "ppo",
+        "examples": 450,
+        "mean_tokens": 106.59555555555555,
+        "sample_sd_tokens": 79.1438935244367,
+        "q25_linear": 42.0,
+        "q75_linear": 155.25,
+        "iqr_linear": 113.25
+      },
+      {
+        "task": "task4_safety",
+        "run": "sft",
+        "examples": 450,
+        "mean_tokens": 105.94888888888889,
+        "sample_sd_tokens": 79.60086714344025,
+        "q25_linear": 42.0,
+        "q75_linear": 157.0,
+        "iqr_linear": 115.0
+      },
+      {
+        "task": "task5_feedback",
+        "run": "gsm/rlaif",
+        "examples": 300,
+        "mean_tokens": 289.06,
+        "sample_sd_tokens": 99.2892622188988,
+        "q25_linear": 220.0,
+        "q75_linear": 349.0,
+        "iqr_linear": 129.0
+      },
+      {
+        "task": "task5_feedback",
+        "run": "gsm/rlvr",
+        "examples": 300,
+        "mean_tokens": 283.8933333333333,
+        "sample_sd_tokens": 99.13152282842812,
+        "q25_linear": 211.5,
+        "q75_linear": 335.25,
+        "iqr_linear": 123.75
+      },
+      {
+        "task": "task5_feedback",
+        "run": "gsm/sft",
+        "examples": 300,
+        "mean_tokens": 284.11333333333334,
+        "sample_sd_tokens": 100.3983395155542,
+        "q25_linear": 211.0,
+        "q75_linear": 344.25,
+        "iqr_linear": 133.25
+      },
+      {
+        "task": "task5_feedback",
+        "run": "transfer/rlaif",
+        "examples": 100,
+        "mean_tokens": 171.15,
+        "sample_sd_tokens": 75.9939358293034,
+        "q25_linear": 112.25,
+        "q75_linear": 212.25,
+        "iqr_linear": 100.0
+      },
+      {
+        "task": "task5_feedback",
+        "run": "transfer/rlvr",
+        "examples": 100,
+        "mean_tokens": 168.11,
+        "sample_sd_tokens": 102.18490815450907,
+        "q25_linear": 102.75,
+        "q75_linear": 191.25,
+        "iqr_linear": 88.5
+      },
+      {
+        "task": "task5_feedback",
+        "run": "transfer/sft",
+        "examples": 100,
+        "mean_tokens": 162.46,
+        "sample_sd_tokens": 71.49167077288787,
+        "q25_linear": 113.25,
+        "q75_linear": 198.75,
+        "iqr_linear": 85.5
+      }
+    ],
+    "ppo_stability": [
+      {
+        "run": "clip_0_05",
+        "updates": 8,
+        "skipped_updates": 0,
+        "max_preclip_policy_grad_norm": 1.9086593389511108,
+        "learned_reward_sample_sd": 2.1564354268280965
+      },
+      {
+        "run": "clip_0_20",
+        "updates": 8,
+        "skipped_updates": 0,
+        "max_preclip_policy_grad_norm": 2.5676653385162354,
+        "learned_reward_sample_sd": 1.7686501709145308
+      },
+      {
+        "run": "clip_0_50",
+        "updates": 8,
+        "skipped_updates": 0,
+        "max_preclip_policy_grad_norm": 2.5676653385162354,
+        "learned_reward_sample_sd": 1.7686501709145308
+      },
+      {
+        "run": "kl_0_00",
+        "updates": 8,
+        "skipped_updates": 0,
+        "max_preclip_policy_grad_norm": 1.8994196653366089,
+        "learned_reward_sample_sd": 2.1564354268280965
+      },
+      {
+        "run": "kl_0_10",
+        "updates": 8,
+        "skipped_updates": 0,
+        "max_preclip_policy_grad_norm": 2.5676653385162354,
+        "learned_reward_sample_sd": 1.7686501709145308
+      },
+      {
+        "run": "kl_0_20",
+        "updates": 8,
+        "skipped_updates": 0,
+        "max_preclip_policy_grad_norm": 2.4321818351745605,
+        "learned_reward_sample_sd": 2.255491050418565
+      },
+      {
+        "run": "standard",
+        "updates": 20,
+        "skipped_updates": 0,
+        "max_preclip_policy_grad_norm": 2.5676653385162354,
+        "learned_reward_sample_sd": 1.8619638868612187
+      }
+    ]
+  },
+  "grpo": {
+    "source": "cached/grpo_k_cache.jsonl",
+    "group_size": 4,
+    "cache_completions": 192,
+    "eligible_completions": 122,
+    "masked_completions": 70,
+    "loss_cap": 512,
+    "bin_rule": "median valid completion token length; short <= median, long > median",
+    "method": "Autograd derivative of the clipped policy surrogate with respect to each response-token log probability at new=old, beta=0. Same fixed rewards, groups and masks for both normalizations.",
+    "scope": "Post-hoc fixed-cache mechanism diagnostic; not parameter-gradient norms measured during training. Each source K=8 cache group is partitioned into two K=4 groups to match the forks. Long/nonterminated responses masked to match the 512-token training loss rule.",
+    "rows": [
+      {
+        "normalization": "grpo",
+        "length_bin": "short",
+        "examples": 62,
+        "cutoff_tokens": 206.0,
+        "mean_tokens": 58.516129032258064,
+        "mean_abs_advantage": 0.7513969638949637,
+        "mean_abs_logprob_gradient_per_token": 0.00014833749670269266,
+        "mean_sum_abs_logprob_gradient_per_completion": 0.003913525853619602
+      },
+      {
+        "normalization": "grpo",
+        "length_bin": "long",
+        "examples": 60,
+        "cutoff_tokens": 206.0,
+        "mean_tokens": 371.2,
+        "mean_abs_advantage": 0.8078216969143048,
+        "mean_abs_logprob_gradient_per_token": 1.179717139575816e-05,
+        "mean_sum_abs_logprob_gradient_per_completion": 0.004207404671428671
+      },
+      {
+        "normalization": "dr_grpo",
+        "length_bin": "short",
+        "examples": 62,
+        "cutoff_tokens": 206.0,
+        "mean_tokens": 58.516129032258064,
+        "mean_abs_advantage": 0.7513969638949637,
+        "mean_abs_logprob_gradient_per_token": 7.643605182850786e-06,
+        "mean_sum_abs_logprob_gradient_per_completion": 0.0005263532348355289
+      },
+      {
+        "normalization": "dr_grpo",
+        "length_bin": "long",
+        "examples": 60,
+        "cutoff_tokens": 206.0,
+        "mean_tokens": 371.2,
+        "mean_abs_advantage": 0.8078216969143048,
+        "mean_abs_logprob_gradient_per_token": 8.217587248884123e-06,
+        "mean_sum_abs_logprob_gradient_per_completion": 0.0030642963747534472
+      }
+    ]
+  },
+  "task5": {
+    "controlled_rates": [
+      {
+        "comparison": "distractor_robustness",
+        "examples": 20,
+        "exact_better_rate": 1.0,
+        "exact_tie_rate": 0.0,
+        "exact_wrong_rate": 0.0,
+        "ai_better_rate": 0.0,
+        "ai_tie_rate": 1.0,
+        "ai_wrong_rate": 0.0
+      },
+      {
+        "comparison": "filler_susceptibility",
+        "examples": 20,
+        "exact_better_rate": 0.0,
+        "exact_tie_rate": 1.0,
+        "exact_wrong_rate": 0.0,
+        "ai_better_rate": 0.1,
+        "ai_tie_rate": 0.35,
+        "ai_wrong_rate": 0.55
+      },
+      {
+        "comparison": "final_vs_reasoning",
+        "examples": 20,
+        "exact_better_rate": 1.0,
+        "exact_tie_rate": 0.0,
+        "exact_wrong_rate": 0.0,
+        "ai_better_rate": 0.2,
+        "ai_tie_rate": 0.8,
+        "ai_wrong_rate": 0.0
+      },
+      {
+        "comparison": "outcome_sensitivity",
+        "examples": 20,
+        "exact_better_rate": 1.0,
+        "exact_tie_rate": 0.0,
+        "exact_wrong_rate": 0.0,
+        "ai_better_rate": 0.15,
+        "ai_tie_rate": 0.85,
+        "ai_wrong_rate": 0.0
+      },
+      {
+        "comparison": "reasoning_sensitivity",
+        "examples": 20,
+        "exact_better_rate": 0.0,
+        "exact_tie_rate": 1.0,
+        "exact_wrong_rate": 0.0,
+        "ai_better_rate": 0.1,
+        "ai_tie_rate": 0.6,
+        "ai_wrong_rate": 0.3
+      }
+    ],
+    "sensitivity": [
+      {
+        "feedback": "exact_verifier",
+        "S_reason": 0.0,
+        "S_outcome": 1.0
+      },
+      {
+        "feedback": "ai_judge",
+        "S_reason": 0.1,
+        "S_outcome": 0.15
+      }
+    ],
+    "pairwise_win_rates": [
+      {
+        "dataset": "GSM8K",
+        "comparison": "rlvr_vs_rlaif",
+        "left_win_rate_ties_half": 0.5133333333333333,
+        "right_win_rate_ties_half": 0.4866666666666667,
+        "ties": 102,
+        "examples": 300
+      },
+      {
+        "dataset": "GSM8K",
+        "comparison": "sft_vs_rlaif",
+        "left_win_rate_ties_half": 0.49333333333333335,
+        "right_win_rate_ties_half": 0.5066666666666667,
+        "ties": 98,
+        "examples": 300
+      },
+      {
+        "dataset": "GSM8K",
+        "comparison": "sft_vs_rlvr",
+        "left_win_rate_ties_half": 0.48833333333333334,
+        "right_win_rate_ties_half": 0.5116666666666667,
+        "ties": 97,
+        "examples": 300
+      },
+      {
+        "dataset": "SVAMP",
+        "comparison": "rlvr_vs_rlaif",
+        "left_win_rate_ties_half": 0.5,
+        "right_win_rate_ties_half": 0.5,
+        "ties": 26,
+        "examples": 100
+      },
+      {
+        "dataset": "SVAMP",
+        "comparison": "sft_vs_rlaif",
+        "left_win_rate_ties_half": 0.54,
+        "right_win_rate_ties_half": 0.46,
+        "ties": 20,
+        "examples": 100
+      },
+      {
+        "dataset": "SVAMP",
+        "comparison": "sft_vs_rlvr",
+        "left_win_rate_ties_half": 0.47,
+        "right_win_rate_ties_half": 0.53,
+        "ties": 26,
+        "examples": 100
+      }
+    ],
+    "transfer_changes": [
+      {
+        "policy": "sft",
+        "gsm_accuracy": 0.29333333333333333,
+        "svamp_accuracy": 0.56,
+        "svamp_minus_gsm": 0.2666666666666667,
+        "gsm_minus_svamp_drop": -0.2666666666666667
+      },
+      {
+        "policy": "rlvr",
+        "gsm_accuracy": 0.29,
+        "svamp_accuracy": 0.45,
+        "svamp_minus_gsm": 0.16000000000000003,
+        "gsm_minus_svamp_drop": -0.16000000000000003
+      },
+      {
+        "policy": "rlaif",
+        "gsm_accuracy": 0.2966666666666667,
+        "svamp_accuracy": 0.57,
+        "svamp_minus_gsm": 0.27333333333333326,
+        "gsm_minus_svamp_drop": -0.27333333333333326
+      }
+    ]
+  },
+  "task4": {
+    "labeled_examples": 240,
+    "overall_exact_agreement": 0.6333333333333333,
+    "manual_ambiguous_rate": 0.0,
+    "ai_ambiguous_rate": 0.0,
+    "labels": [
+      "SAFE_ANSWER",
+      "JUSTIFIED_REFUSAL",
+      "UNSAFE_COMPLIANCE",
+      "OVER_REFUSAL",
+      "AMBIGUOUS"
+    ],
+    "confusion_manual_rows_ai_columns": [
+      [
+        72,
+        38,
+        0,
+        0,
+        0
+      ],
+      [
+        7,
+        80,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        8,
+        35,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "figure_label_semantics": "Actual unmodified ai_label, not benchmark-remapped behavior labels."
+  },
+  "task1": {
+    "provenance": "Frozen post-hoc evaluation of existing checkpoints; no training.",
+    "skipped_overlong_prompts": 9,
+    "runs": {
+      "standard": {
+        "strata": {
+          "length_matched": {
+            "examples": 80,
+            "preference_accuracy": 0.5625
+          },
+          "preferred_longer": {
+            "examples": 78,
+            "preference_accuracy": 0.4358974358974359
+          },
+          "rejected_longer": {
+            "examples": 79,
+            "preference_accuracy": 0.6835443037974683
+          }
+        },
+        "aggregate_preference_accuracy": 0.5611814345991561,
+        "saved_generation_mean_tokens": 142.77637130801688,
+        "saved_generation_sample_sd_tokens": 98.21131548944159,
+        "word_limit_examples": 10,
+        "word_limit_compliance": 0.7,
+        "word_count_definition": "common.metrics.word_count: Unicode word-boundary regex",
+        "stratum_source": "data/dpo_length_stratified_eval.jsonl"
+      },
+      "length_balanced": {
+        "strata": {
+          "length_matched": {
+            "examples": 80,
+            "preference_accuracy": 0.5625
+          },
+          "preferred_longer": {
+            "examples": 78,
+            "preference_accuracy": 0.44871794871794873
+          },
+          "rejected_longer": {
+            "examples": 79,
+            "preference_accuracy": 0.7721518987341772
+          }
+        },
+        "aggregate_preference_accuracy": 0.5949367088607594,
+        "saved_generation_mean_tokens": 140.23206751054852,
+        "saved_generation_sample_sd_tokens": 95.42861020303899,
+        "word_limit_examples": 10,
+        "word_limit_compliance": 0.6,
+        "word_count_definition": "common.metrics.word_count: Unicode word-boundary regex",
+        "stratum_source": "data/dpo_length_stratified_eval.jsonl"
+      }
+    }
+  },
+  "qualitative_sources": {
+    "ppo_scored_cache_examples": 32,
+    "task5_diagnostic_examples": 100
+  }
+}

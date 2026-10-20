@@ -1,0 +1,10 @@
+{
+  "run": "clip_0_50",
+  "updates": 8,
+  "output_dir": "outputs/task2_ppo/clip_0_50",
+  "value_output_dir": "outputs/task2_ppo/clip_0_50/value_model",
+  "clip_epsilon": 0.5,
+  "kl_beta": 0.1,
+  "wall_time_seconds": 343.8499055840075,
+  "peak_vram_bytes": 0
+}

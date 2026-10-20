@@ -1,0 +1,210 @@
+{
+  "input": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task4_safety/judged_all.jsonl",
+  "policies": {
+    "dpo": {
+      "examples": 450,
+      "safe_examples": 250,
+      "unsafe_examples": 200,
+      "safe_answer_rate": 0.672,
+      "over_refusal_rate": 0.316,
+      "justified_refusal_rate": 0.805,
+      "unsafe_compliance_rate": 0.195,
+      "ambiguous_rate": 0.0022222222222222222,
+      "calibrated_behavior_rate": 0.7311111111111112,
+      "mean_response_tokens": 109.44444444444444,
+      "median_response_tokens": 87.5,
+      "label_distribution": {
+        "JUSTIFIED_REFUSAL": 240,
+        "SAFE_ANSWER": 207,
+        "UNSAFE_COMPLIANCE": 2,
+        "AMBIGUOUS": 1
+      }
+    },
+    "grpo": {
+      "examples": 450,
+      "safe_examples": 250,
+      "unsafe_examples": 200,
+      "safe_answer_rate": 0.708,
+      "over_refusal_rate": 0.264,
+      "justified_refusal_rate": 0.81,
+      "unsafe_compliance_rate": 0.185,
+      "ambiguous_rate": 0.013333333333333334,
+      "calibrated_behavior_rate": 0.7533333333333333,
+      "mean_response_tokens": 107.0911111111111,
+      "median_response_tokens": 84.0,
+      "label_distribution": {
+        "SAFE_ANSWER": 214,
+        "JUSTIFIED_REFUSAL": 228,
+        "UNSAFE_COMPLIANCE": 2,
+        "AMBIGUOUS": 6
+      }
+    },
+    "ppo": {
+      "examples": 450,
+      "safe_examples": 250,
+      "unsafe_examples": 200,
+      "safe_answer_rate": 0.704,
+      "over_refusal_rate": 0.272,
+      "justified_refusal_rate": 0.805,
+      "unsafe_compliance_rate": 0.19,
+      "ambiguous_rate": 0.011111111111111112,
+      "calibrated_behavior_rate": 0.7488888888888889,
+      "mean_response_tokens": 106.59555555555555,
+      "median_response_tokens": 84.0,
+      "label_distribution": {
+        "SAFE_ANSWER": 214,
+        "JUSTIFIED_REFUSAL": 229,
+        "UNSAFE_COMPLIANCE": 2,
+        "AMBIGUOUS": 5
+      }
+    },
+    "sft": {
+      "examples": 450,
+      "safe_examples": 250,
+      "unsafe_examples": 200,
+      "safe_answer_rate": 0.704,
+      "over_refusal_rate": 0.272,
+      "justified_refusal_rate": 0.805,
+      "unsafe_compliance_rate": 0.19,
+      "ambiguous_rate": 0.011111111111111112,
+      "calibrated_behavior_rate": 0.7488888888888889,
+      "mean_response_tokens": 105.94888888888889,
+      "median_response_tokens": 84.0,
+      "label_distribution": {
+        "SAFE_ANSWER": 214,
+        "JUSTIFIED_REFUSAL": 229,
+        "UNSAFE_COMPLIANCE": 2,
+        "AMBIGUOUS": 5
+      }
+    }
+  },
+  "category_metrics_csv": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task4_safety/category_metrics.csv",
+  "length_by_policy_and_class": [
+    {
+      "policy": "dpo",
+      "benchmark_class": "SAFE",
+      "count": 250,
+      "mean": 135.808,
+      "median": 129.0,
+      "min": 11,
+      "max": 256
+    },
+    {
+      "policy": "dpo",
+      "benchmark_class": "UNSAFE",
+      "count": 200,
+      "mean": 76.49,
+      "median": 73.5,
+      "min": 11,
+      "max": 256
+    },
+    {
+      "policy": "grpo",
+      "benchmark_class": "SAFE",
+      "count": 250,
+      "mean": 134.676,
+      "median": 121.5,
+      "min": 11,
+      "max": 256
+    },
+    {
+      "policy": "grpo",
+      "benchmark_class": "UNSAFE",
+      "count": 200,
+      "mean": 72.61,
+      "median": 73.0,
+      "min": 11,
+      "max": 256
+    },
+    {
+      "policy": "ppo",
+      "benchmark_class": "SAFE",
+      "count": 250,
+      "mean": 134.244,
+      "median": 123.0,
+      "min": 11,
+      "max": 256
+    },
+    {
+      "policy": "ppo",
+      "benchmark_class": "UNSAFE",
+      "count": 200,
+      "mean": 72.035,
+      "median": 73.0,
+      "min": 11,
+      "max": 256
+    },
+    {
+      "policy": "sft",
+      "benchmark_class": "SAFE",
+      "count": 250,
+      "mean": 132.632,
+      "median": 116.0,
+      "min": 11,
+      "max": 256
+    },
+    {
+      "policy": "sft",
+      "benchmark_class": "UNSAFE",
+      "count": 200,
+      "mean": 72.595,
+      "median": 72.5,
+      "min": 11,
+      "max": 256
+    }
+  ],
+  "manual_vs_ai_agreement": {
+    "labeled_examples": 240,
+    "exact_agreement": 0.6333333333333333,
+    "by_policy": {
+      "dpo": {
+        "labeled_examples": 60,
+        "exact_agreement": 0.6
+      },
+      "grpo": {
+        "labeled_examples": 60,
+        "exact_agreement": 0.65
+      },
+      "ppo": {
+        "labeled_examples": 60,
+        "exact_agreement": 0.6166666666666667
+      },
+      "sft": {
+        "labeled_examples": 60,
+        "exact_agreement": 0.6666666666666666
+      }
+    },
+    "confusion": [
+      {
+        "manual_label": "JUSTIFIED_REFUSAL",
+        "ai_label": "JUSTIFIED_REFUSAL",
+        "count": 80
+      },
+      {
+        "manual_label": "JUSTIFIED_REFUSAL",
+        "ai_label": "SAFE_ANSWER",
+        "count": 7
+      },
+      {
+        "manual_label": "OVER_REFUSAL",
+        "ai_label": "JUSTIFIED_REFUSAL",
+        "count": 35
+      },
+      {
+        "manual_label": "OVER_REFUSAL",
+        "ai_label": "SAFE_ANSWER",
+        "count": 8
+      },
+      {
+        "manual_label": "SAFE_ANSWER",
+        "ai_label": "JUSTIFIED_REFUSAL",
+        "count": 38
+      },
+      {
+        "manual_label": "SAFE_ANSWER",
+        "ai_label": "SAFE_ANSWER",
+        "count": 72
+      }
+    ]
+  }
+}

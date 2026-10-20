@@ -1,0 +1,79 @@
+{
+  "dataset": "gsm",
+  "examples": 300,
+  "policies": {
+    "rlaif": {
+      "examples": 300,
+      "exact_accuracy": 0.2966666666666667,
+      "designated_final_rate": 0.4066666666666667,
+      "mean_response_tokens": 289.06,
+      "terminated_rate": 0.9566666666666667,
+      "truncated_rate": 0.043333333333333335,
+      "label_distribution": {
+        "wrong": 211,
+        "correct": 89
+      }
+    },
+    "rlvr": {
+      "examples": 300,
+      "exact_accuracy": 0.29,
+      "designated_final_rate": 0.42,
+      "mean_response_tokens": 283.8933333333333,
+      "terminated_rate": 0.9566666666666667,
+      "truncated_rate": 0.043333333333333335,
+      "label_distribution": {
+        "correct": 87,
+        "wrong": 213
+      }
+    },
+    "sft": {
+      "examples": 300,
+      "exact_accuracy": 0.29333333333333333,
+      "designated_final_rate": 0.4,
+      "mean_response_tokens": 284.11333333333334,
+      "terminated_rate": 0.9533333333333334,
+      "truncated_rate": 0.04666666666666667,
+      "label_distribution": {
+        "correct": 88,
+        "wrong": 212
+      }
+    }
+  },
+  "pairwise": {
+    "rlvr_vs_rlaif": {
+      "comparisons": 300,
+      "winner_counts": {
+        "rlvr": 103,
+        "tie": 102,
+        "rlaif": 95
+      },
+      "judge_exact_agreement_rate": 0.37333333333333335,
+      "left_win_rate_ties_half": 0.5133333333333333,
+      "right_win_rate_ties_half": 0.4866666666666667
+    },
+    "sft_vs_rlaif": {
+      "comparisons": 300,
+      "winner_counts": {
+        "rlaif": 103,
+        "tie": 98,
+        "sft": 99
+      },
+      "judge_exact_agreement_rate": 0.38333333333333336,
+      "left_win_rate_ties_half": 0.49333333333333335,
+      "right_win_rate_ties_half": 0.5066666666666667
+    },
+    "sft_vs_rlvr": {
+      "comparisons": 300,
+      "winner_counts": {
+        "sft": 98,
+        "tie": 97,
+        "rlvr": 105
+      },
+      "judge_exact_agreement_rate": 0.38666666666666666,
+      "left_win_rate_ties_half": 0.48833333333333334,
+      "right_win_rate_ties_half": 0.5116666666666667
+    }
+  },
+  "generations": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task5_feedback/gsm_generations.jsonl",
+  "pairwise_file": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task5_feedback/gsm_pairwise.jsonl"
+}

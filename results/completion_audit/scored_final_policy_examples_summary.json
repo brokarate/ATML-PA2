@@ -1,0 +1,6 @@
+{
+  "examples": 28,
+  "reward_model": "yavuz-ai/qwen2.5-1.5b-rm-ultrafeedback",
+  "source": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/completion_audit/scored_final_policy_examples.jsonl",
+  "selection": "Four Task 1 prompts and five PPO prompts selected for directly inspectable instruction-following differences; illustrative, not a random quality estimate."
+}

@@ -1,0 +1,11 @@
+{
+  "name": "dr_grpo_norm",
+  "adapter": "outputs/task3_grpo/dr_grpo_norm",
+  "examples": 200,
+  "reward_model_score": 0.9679532527923584,
+  "sampled_kl": 5.450804682368471e-05,
+  "entropy": 0.8329113042354583,
+  "mean_response_length": 262.87,
+  "terminated_rate": 0.73,
+  "truncated_rate": 0.27
+}
