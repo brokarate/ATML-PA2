@@ -317,6 +317,10 @@ def task4_figures():
     fig.savefig(FIG/"task4_category_label_distribution.png",dpi=300,bbox_inches="tight")
     plt.close(fig)
     table("task4_category_label_distribution_verified", distributions)
+    return manual_audit_figure(rows)
+
+
+def manual_audit_figure(rows):
     audit = list(csv.DictReader(repo_path("results/task4_safety/manual_audit_sheet.csv").open()))
     lookup = {(str(r["xstest_id"]),r["policy"]):r["ai_label"] for r in rows}
     matrix = np.zeros((5,5), dtype=int)
@@ -352,6 +356,10 @@ def task4_figures():
         "ai_ambiguous_rate":sum(a=="AMBIGUOUS" for _,m,a in pairs)/n,
         "labels":LABELS,"confusion_manual_rows_ai_columns":matrix.tolist(),
         "figure_label_semantics":"Actual unmodified ai_label, not benchmark-remapped behavior labels."}
+    provenance = repo_path("results/task4_safety/audit_correction_provenance.json")
+    if provenance.exists():
+        result["review_type"] = json.loads(provenance.read_text())["review_type"]
+        result["provenance_file"] = "results/task4_safety/audit_correction_provenance.json"
     save_json("results/task4_safety/verified_audit_analysis.json",result)
     return result
 

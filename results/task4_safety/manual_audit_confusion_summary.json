@@ -1,11 +1,58 @@
 {
-  "source_workbook": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task4_safety/manual_audit_sheet.xlsx",
   "source_audit_csv": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task4_safety/manual_audit_sheet.csv",
+  "original_source_workbook": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task4_safety/audit_history/before_approved_corrections/manual_audit_sheet.xlsx",
   "judged_outputs": "/Users/khan/Desktop/LUMS/Sem 5/ATML/PAs/PA2/results/task4_safety/judged_all.jsonl",
   "labeled_examples": 240,
-  "overall_exact_agreement": 0.6333333333333333,
+  "overall_exact_agreement": 0.7208333333333333,
   "manual_ambiguous_rate": 0.0,
   "ai_ambiguous_rate": 0.0,
+  "labels": [
+    "SAFE_ANSWER",
+    "JUSTIFIED_REFUSAL",
+    "UNSAFE_COMPLIANCE",
+    "OVER_REFUSAL",
+    "AMBIGUOUS"
+  ],
+  "confusion_manual_rows_ai_columns": [
+    [
+      66,
+      11,
+      0,
+      0,
+      0
+    ],
+    [
+      13,
+      107,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      8,
+      35,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "figure_label_semantics": "Actual unmodified ai_label, not benchmark-remapped behavior labels.",
+  "review_type": "post_hoc_human_reviewed_AI_assisted_corrections",
+  "provenance_file": "results/task4_safety/audit_correction_provenance.json",
   "valid_labels": [
     "SAFE_ANSWER",
     "JUSTIFIED_REFUSAL",
@@ -16,40 +63,40 @@
   "by_policy": {
     "dpo": {
       "examples": 60,
-      "exact_agreement": 0.6,
+      "exact_agreement": 0.7166666666666667,
       "manual_ambiguous_rate": 0.0,
       "ai_ambiguous_rate": 0.0
     },
     "grpo": {
       "examples": 60,
-      "exact_agreement": 0.65,
+      "exact_agreement": 0.7166666666666667,
       "manual_ambiguous_rate": 0.0,
       "ai_ambiguous_rate": 0.0
     },
     "ppo": {
       "examples": 60,
-      "exact_agreement": 0.6166666666666667,
+      "exact_agreement": 0.7166666666666667,
       "manual_ambiguous_rate": 0.0,
       "ai_ambiguous_rate": 0.0
     },
     "sft": {
       "examples": 60,
-      "exact_agreement": 0.6666666666666666,
+      "exact_agreement": 0.7333333333333333,
       "manual_ambiguous_rate": 0.0,
       "ai_ambiguous_rate": 0.0
     }
   },
   "confusion_counts_manual_rows_ai_columns": {
     "SAFE_ANSWER": {
-      "SAFE_ANSWER": 72,
-      "JUSTIFIED_REFUSAL": 38,
+      "SAFE_ANSWER": 66,
+      "JUSTIFIED_REFUSAL": 11,
       "UNSAFE_COMPLIANCE": 0,
       "OVER_REFUSAL": 0,
       "AMBIGUOUS": 0
     },
     "JUSTIFIED_REFUSAL": {
-      "SAFE_ANSWER": 7,
-      "JUSTIFIED_REFUSAL": 80,
+      "SAFE_ANSWER": 13,
+      "JUSTIFIED_REFUSAL": 107,
       "UNSAFE_COMPLIANCE": 0,
       "OVER_REFUSAL": 0,
       "AMBIGUOUS": 0
@@ -78,25 +125,25 @@
   },
   "confusion_row_percent_manual_rows_ai_columns": {
     "SAFE_ANSWER": {
-      "SAFE_ANSWER": 0.6545454545454545,
-      "JUSTIFIED_REFUSAL": 0.34545454545454546,
+      "SAFE_ANSWER": 0.8571428571428571,
+      "JUSTIFIED_REFUSAL": 0.14285714285714285,
       "UNSAFE_COMPLIANCE": 0.0,
       "OVER_REFUSAL": 0.0,
       "AMBIGUOUS": 0.0
     },
     "JUSTIFIED_REFUSAL": {
-      "SAFE_ANSWER": 0.08045977011494253,
-      "JUSTIFIED_REFUSAL": 0.9195402298850575,
+      "SAFE_ANSWER": 0.10833333333333334,
+      "JUSTIFIED_REFUSAL": 0.8916666666666667,
       "UNSAFE_COMPLIANCE": 0.0,
       "OVER_REFUSAL": 0.0,
       "AMBIGUOUS": 0.0
     },
     "UNSAFE_COMPLIANCE": {
-      "SAFE_ANSWER": 0.0,
-      "JUSTIFIED_REFUSAL": 0.0,
-      "UNSAFE_COMPLIANCE": 0.0,
-      "OVER_REFUSAL": 0.0,
-      "AMBIGUOUS": 0.0
+      "SAFE_ANSWER": null,
+      "JUSTIFIED_REFUSAL": null,
+      "UNSAFE_COMPLIANCE": null,
+      "OVER_REFUSAL": null,
+      "AMBIGUOUS": null
     },
     "OVER_REFUSAL": {
       "SAFE_ANSWER": 0.18604651162790697,
@@ -106,11 +153,11 @@
       "AMBIGUOUS": 0.0
     },
     "AMBIGUOUS": {
-      "SAFE_ANSWER": 0.0,
-      "JUSTIFIED_REFUSAL": 0.0,
-      "UNSAFE_COMPLIANCE": 0.0,
-      "OVER_REFUSAL": 0.0,
-      "AMBIGUOUS": 0.0
+      "SAFE_ANSWER": null,
+      "JUSTIFIED_REFUSAL": null,
+      "UNSAFE_COMPLIANCE": null,
+      "OVER_REFUSAL": null,
+      "AMBIGUOUS": null
     }
   }
 }

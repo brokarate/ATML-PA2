@@ -1,6 +1,6 @@
 {
   "labeled_examples": 240,
-  "overall_exact_agreement": 0.6333333333333333,
+  "overall_exact_agreement": 0.7208333333333333,
   "manual_ambiguous_rate": 0.0,
   "ai_ambiguous_rate": 0.0,
   "labels": [
@@ -12,15 +12,15 @@
   ],
   "confusion_manual_rows_ai_columns": [
     [
-      72,
-      38,
+      66,
+      11,
       0,
       0,
       0
     ],
     [
-      7,
-      80,
+      13,
+      107,
       0,
       0,
       0
@@ -47,5 +47,7 @@
       0
     ]
   ],
-  "figure_label_semantics": "Actual unmodified ai_label, not benchmark-remapped behavior labels."
+  "figure_label_semantics": "Actual unmodified ai_label, not benchmark-remapped behavior labels.",
+  "review_type": "post_hoc_human_reviewed_AI_assisted_corrections",
+  "provenance_file": "results/task4_safety/audit_correction_provenance.json"
 }

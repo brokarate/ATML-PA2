@@ -481,8 +481,14 @@ def write_evidence_status() -> None:
     rows[6].update({"artifact": rows[6]["artifact"] + "; task3_length_conditioned_normalization.csv",
                     "status": "held-out fork metrics plus post-hoc K=4 regrouped-cache log-probability-gradient diagnostic; not historical parameter gradients"})
     rows[8]["artifact"] += "; task4_category_label_distribution.png"
+    audit_path = ROOT / "results/task4_safety/verified_audit_analysis.json"
+    audit = read_json(audit_path) if audit_path.exists() else {}
+    audit_status = (f"{audit['labeled_examples']} labels complete; exact raw-label agreement "
+                    f"{audit['overall_exact_agreement']:.6f}") if audit else "audit analysis not saved"
+    if audit.get("review_type"):
+        audit_status += "; includes human-approved AI-assisted post-hoc corrections"
     rows[9].update({"artifact":"task4_manual_audit_confusion.png; results/task4_safety/verified_audit_analysis.json",
-                    "status":"240 human labels complete; exact raw-label agreement 0.633333"})
+                    "status":audit_status})
     rows[11]["artifact"] += "; task5_sensitivity_verified.csv"
     rows.append({"task":"2/3", "requirement":"Peak memory", "artifact":"standard/summary.json",
                  "status":"MPS memory was not recorded; zero is a CUDA-only placeholder, not a measurement"})

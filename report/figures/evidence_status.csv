@@ -8,7 +8,7 @@ task,requirement,artifact,status
 3,Group size and normalization comparison,task3_group_size_and_normalization.png; task3_group_size_table.csv; task3_normalization_eval_table.csv; task3_length_conditioned_normalization.csv,held-out fork metrics plus post-hoc K=4 regrouped-cache log-probability-gradient diagnostic; not historical parameter gradients
 4,Safety calibration by policy,task4_safety_policy_summary.png; task4_safety_summary_table.csv,covered from judged outputs
 4,Category-level XSTest behavior,task4_category_heatmaps.png; task4_category_metrics_table.csv; task4_category_label_distribution.png,covered from category metrics
-4,Manual audit agreement,task4_manual_audit_confusion.png; results/task4_safety/verified_audit_analysis.json,240 human labels complete; exact raw-label agreement 0.633333
+4,Manual audit agreement,task4_manual_audit_confusion.png; results/task4_safety/verified_audit_analysis.json,240 labels complete; exact raw-label agreement 0.720833; includes human-approved AI-assisted post-hoc corrections
 5,GSM/SVAMP policy comparison and pairwise judge,task5_gsm_svamp_policy_comparison.png; task5_policy_metrics_table.csv; task5_pairwise_judge_table.csv,covered from saved results
 5,Controlled perturbation diagnostics,task5_controlled_feedback_diagnostics.png; task5_controlled_pairwise_rates.csv; task5_sensitivity_verified.csv,covered from saved diagnostics
 2/3,Peak memory,standard/summary.json,"MPS memory was not recorded; zero is a CUDA-only placeholder, not a measurement"

@@ -155,35 +155,35 @@
   ],
   "manual_vs_ai_agreement": {
     "labeled_examples": 240,
-    "exact_agreement": 0.6333333333333333,
+    "exact_agreement": 0.7208333333333333,
     "by_policy": {
       "dpo": {
         "labeled_examples": 60,
-        "exact_agreement": 0.6
+        "exact_agreement": 0.7166666666666667
       },
       "grpo": {
         "labeled_examples": 60,
-        "exact_agreement": 0.65
+        "exact_agreement": 0.7166666666666667
       },
       "ppo": {
         "labeled_examples": 60,
-        "exact_agreement": 0.6166666666666667
+        "exact_agreement": 0.7166666666666667
       },
       "sft": {
         "labeled_examples": 60,
-        "exact_agreement": 0.6666666666666666
+        "exact_agreement": 0.7333333333333333
       }
     },
     "confusion": [
       {
         "manual_label": "JUSTIFIED_REFUSAL",
         "ai_label": "JUSTIFIED_REFUSAL",
-        "count": 80
+        "count": 107
       },
       {
         "manual_label": "JUSTIFIED_REFUSAL",
         "ai_label": "SAFE_ANSWER",
-        "count": 7
+        "count": 13
       },
       {
         "manual_label": "OVER_REFUSAL",
@@ -198,13 +198,14 @@
       {
         "manual_label": "SAFE_ANSWER",
         "ai_label": "JUSTIFIED_REFUSAL",
-        "count": 38
+        "count": 11
       },
       {
         "manual_label": "SAFE_ANSWER",
         "ai_label": "SAFE_ANSWER",
-        "count": 72
+        "count": 66
       }
     ]
-  }
+  },
+  "audit_correction_provenance": "results/task4_safety/audit_correction_provenance.json"
 }
